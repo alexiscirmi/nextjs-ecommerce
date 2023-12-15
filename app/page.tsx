@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <main>
-      hola
+    <main className='h-screen mt-20'>
+      holaholaholaholaholaholaholahola
     </main>
   )
 }

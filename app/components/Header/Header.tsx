@@ -1,6 +1,6 @@
 import { Urbanist } from 'next/font/google'
 import styles from './header.module.css'
-import { Burger } from '../burger/burger'
+import { Burger } from '@/app/components/burger/burger'
 
 const urbanist = Urbanist({
   subsets: ['latin'],

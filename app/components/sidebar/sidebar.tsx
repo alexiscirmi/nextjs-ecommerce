@@ -8,7 +8,7 @@ export const Sidebar = () => {
 
   return (
     <div
-      className={`flex flex-col absolute top-0 h-full w-48 z-20 bg-slate-200 ${
+      className={`flex flex-col fixed top-0 h-screen w-48 z-20 bg-slate-200 ${
         sidebar
           ? 'translate-x-0 transition-all'
           : '-translate-x-48 transition-all'

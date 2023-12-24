@@ -37,4 +37,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Royalty-free images acknowledgments:
 
-freestocks: https://unsplash.com/es/@freestocks
+svetlanasokolova: https://www.freepik.com/author/svetlanasokolova

@@ -1,16 +1,18 @@
 import Image from 'next/image'
+import main1 from '@/public/img/main1.webp'
 
 export default function Home() {
   return (
     <main className='h-full w-full mt-20'>
       <section className='p-4'>
         <Image
-          src='https://firebasestorage.googleapis.com/v0/b/anverso-45437.appspot.com/o/main1.webp?alt=media&token=feacd094-47f9-4e3e-b2ed-291c36b65c3d'
+          src={main1}
           alt='Banner'
-          width='1920'
-          height='1280'
-          placeholder='empty'
-          className='object-cover'
+          width='4050'
+          height='2700'
+          placeholder='blur'
+          priority
+          className='object-cover object-top'
           style={{ maxHeight: '80vh' }}
         />
       </section>

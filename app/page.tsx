@@ -13,7 +13,7 @@ export default function Home() {
           placeholder='blur'
           priority
           className='object-cover object-top'
-          style={{ maxHeight: '80vh' }}
+          style={{ height: '80vh' }}
         />
       </section>
     </main>

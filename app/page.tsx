@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import main1 from '@/public/img/main1.webp'
+import main2 from '@/public/img/main2.webp'
+import main3 from '@/public/img/main3.webp'
 
 export default function Home() {
   return (
@@ -19,20 +21,24 @@ export default function Home() {
       <section className='md:grid md:grid-cols-2'>
         <div className='p-4'>
           <Image
-            src={main1}
-            alt=''
-            width='4050'
-            height='2700'
-            className='object-cover object-top'
+            src={main2}
+            alt='Clothes photo'
+            width='1024'
+            height='1024'
+            placeholder='blur'
+            className='object-cover'
+            style={{ height: '60vh' }}
           />
         </div>
         <div className='p-4'>
           <Image
-            src={main1}
-            alt=''
-            width='4050'
-            height='2700'
+            src={main3}
+            alt='Clothes photo'
+            width='2000'
+            height='1333'
+            placeholder='blur'
             className='object-cover object-top'
+            style={{ height: '60vh' }}
           />
         </div>
       </section>

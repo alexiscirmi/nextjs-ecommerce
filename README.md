@@ -38,3 +38,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Royalty-free images acknowledgments:
 
 svetlanasokolova: https://www.freepik.com/author/svetlanasokolova
+bristekjegor: https://www.freepik.com/author/bristekjegor

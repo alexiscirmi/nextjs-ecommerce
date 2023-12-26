@@ -23,7 +23,7 @@ export const Header = () => {
             <span className='text-4xl sm:text-5xl scale-100'>VERSO</span>
           </h1>
 
-          <h2 className='flex flex-col text-xs'>
+          <h2 className='hidden sm:flex flex-col text-xs'>
             <span className='mt-1'>STYLING</span>
             <span className='-my-1'>YOUR</span>
             <span className='mb-1'>DESIRES</span>

@@ -15,10 +15,16 @@ export const Sidebar = () => {
       }`}
     >
       <Burger className='mx-auto my-5' />
-      <ul>
-        <li>Hola</li>
-        <li>cómo</li>
-        <li>estás</li>
+      <ul className='mt-5'>
+        <li className='ps-3 py-3 my-1 hover:bg-slate-200 transition-all'>
+          Hola
+        </li>
+        <li className='ps-3 py-3 my-1 hover:bg-slate-200 transition-all'>
+          cómo
+        </li>
+        <li className='ps-3 py-3 my-1 hover:bg-slate-200 transition-all'>
+          estás
+        </li>
       </ul>
     </div>
   )

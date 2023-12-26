@@ -11,7 +11,7 @@ export const Burger = ({ className }: { className: string }) => {
       width='32'
       height='32'
       fill='currentColor'
-      className={`bi bi-list hover:scale-110 hover:transition-all ${className}`}
+      className={`bi bi-list hover:scale-110 transition-all ${className}`}
       viewBox='0 0 16 16'
       onClick={toggleSidebar}
     >

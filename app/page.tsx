@@ -9,7 +9,7 @@ export default function Home() {
       <section className='p-4'>
         <Image
           src={main1}
-          alt='Banner'
+          alt='Fashion model banner'
           width='4050'
           height='2700'
           placeholder='blur'
@@ -18,6 +18,7 @@ export default function Home() {
           style={{ height: '80vh' }}
         />
       </section>
+
       <section className='md:grid md:grid-cols-2'>
         <div className='p-4'>
           <Image
@@ -30,6 +31,7 @@ export default function Home() {
             style={{ height: '60vh' }}
           />
         </div>
+
         <div className='p-4'>
           <Image
             src={main3}

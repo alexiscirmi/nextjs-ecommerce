@@ -8,7 +8,7 @@ export const Sidebar = () => {
   const { sidebar } = useSidebarContext()
 
   return (
-    <div
+    <aside
       className={`flex flex-col fixed top-0 h-screen w-48 z-20 bg-slate-100 border-r border-solid border-slate-200 transition-all ${
         styles.sidebar
       } ${sidebar ? 'translate-x-0' : '-translate-x-48'}`}
@@ -25,6 +25,6 @@ export const Sidebar = () => {
           estás
         </li>
       </ul>
-    </div>
+    </aside>
   )
 }

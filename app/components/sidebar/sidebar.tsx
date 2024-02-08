@@ -1,19 +1,17 @@
 'use client'
 
 import { useSidebarContext } from '@/app/context/context'
-import { Burger } from '../burger/burger'
-import styles from './sidebar.module.css'
 
 export const Sidebar = () => {
   const { sidebar } = useSidebarContext()
 
   return (
     <aside
-      className={`flex flex-col fixed top-0 h-screen w-48 z-20 bg-slate-100 border-r border-solid border-slate-200 transition-all ${
-        styles.sidebar
-      } ${sidebar ? 'translate-x-0' : '-translate-x-48'}`}
+      className={`fixed z-10 top-0 h-screen w-48 bg-white transition-all select-none ${
+        sidebar ? 'translate-x-0' : '-translate-x-48'
+      }`}
     >
-      <Burger className='mx-auto my-5' />
+      <div style={{ height: '11vh' }} />
       <ul className='mt-5'>
         <li className='ps-3 py-3 my-1 hover:bg-slate-200 transition-all'>
           Hola

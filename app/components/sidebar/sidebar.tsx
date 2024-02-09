@@ -1,6 +1,7 @@
 'use client'
 
 import { useSidebarContext } from '@/app/context/context'
+import { Item } from './item/item'
 
 export const Sidebar = () => {
   const { sidebar } = useSidebarContext()
@@ -12,16 +13,10 @@ export const Sidebar = () => {
       }`}
     >
       <div style={{ height: '11vh' }} />
-      <ul className='mt-5'>
-        <li className='ps-3 py-3 my-1 hover:bg-slate-200 transition-all'>
-          Hola
-        </li>
-        <li className='ps-3 py-3 my-1 hover:bg-slate-200 transition-all'>
-          cómo
-        </li>
-        <li className='ps-3 py-3 my-1 hover:bg-slate-200 transition-all'>
-          estás
-        </li>
+      <ul className='mt-4'>
+        <Item text='Hola' />
+        <Item text='Hola' />
+        <Item text='Hola' />
       </ul>
     </aside>
   )

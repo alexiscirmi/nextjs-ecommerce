@@ -1,16 +1,21 @@
 'use client'
 
-import { useSidebarContext } from '@/app/context/context'
+import { useAppDispatch } from '@/lib/redux/hooks'
+import { toggleSidebar } from '@/lib/redux/features/sidebarSlice'
 
 interface BurgerInterface {
   className: string
 }
 
 export const Burger: React.FC<BurgerInterface> = ({ className }) => {
-  const { toggleSidebar } = useSidebarContext()
+  const dispatch = useAppDispatch()
+
+  const handleClick = () => {
+    dispatch(toggleSidebar())
+  }
 
   return (
-    <div className={className}>
+    <div className={className} onClick={handleClick}>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='32'
@@ -18,7 +23,6 @@ export const Burger: React.FC<BurgerInterface> = ({ className }) => {
         fill='currentColor'
         className='bi bi-list cursor-pointer lg:hover:scale-110 transition-all'
         viewBox='0 0 16 16'
-        onClick={toggleSidebar}
       >
         <path
           fillRule='evenodd'

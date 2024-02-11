@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { SidebarContextProvider } from '@/app/context/context'
-import { Providers } from '@/lib/redux/providers'
+import StoreProvider from './store-provider'
 import { Header } from '@/app/components/header/header'
 import { Sidebar } from '@/app/components/sidebar/sidebar'
 import './globals.css'
@@ -21,13 +20,11 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${inter.className} antialiased`}>
-        <Providers>
-          <SidebarContextProvider>
-            <Sidebar />
-            <Header />
-            {children}
-          </SidebarContextProvider>
-        </Providers>
+        <StoreProvider>
+          <Sidebar />
+          <Header />
+          {children}
+        </StoreProvider>
       </body>
     </html>
   )

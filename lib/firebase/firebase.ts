@@ -3,12 +3,12 @@ import { getStorage } from 'firebase/storage'
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyAZzyE19Xen_616MhcGPHh_U8mqweHqk4k',
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_KEY,
   authDomain: 'anverso-45437.firebaseapp.com',
   projectId: 'anverso-45437',
   storageBucket: 'anverso-45437.appspot.com',
   messagingSenderId: '735057000281',
-  appId: '1:735057000281:web:6e211057d8c510e7a2be48',
+  appId: '1:735057000281:web:6e211057d8c510e7a2be48'
 }
 
 // Initialize Firebase

@@ -5,7 +5,7 @@ import main3 from '@/public/img/main3.webp'
 
 export default function Home() {
   return (
-    <main className='h-full w-full mt-20'>
+    <main className='h-full w-full mt-16'>
       <section className='p-4'>
         <Image
           src={main1}

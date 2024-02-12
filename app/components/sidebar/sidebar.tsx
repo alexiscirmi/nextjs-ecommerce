@@ -13,7 +13,7 @@ export const Sidebar = () => {
       }`}
     >
       <div style={{ height: '11vh' }} />
-      <ul className='mt-4'>
+      <ul className='mt-3 flex flex-col'>
         <Item text='Home' url='/' />
         <Item text='Products' url='/products' />
       </ul>

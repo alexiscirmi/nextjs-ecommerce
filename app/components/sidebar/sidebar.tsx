@@ -14,9 +14,8 @@ export const Sidebar = () => {
     >
       <div style={{ height: '11vh' }} />
       <ul className='mt-4'>
-        <Item text='Hola' />
-        <Item text='Hola' />
-        <Item text='Hola' />
+        <Item text='Home' url='/' />
+        <Item text='Products' url='/products' />
       </ul>
     </aside>
   )

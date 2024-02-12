@@ -5,7 +5,7 @@ import main3 from '@/public/img/main3.webp'
 
 export default function Home() {
   return (
-    <main className='h-full w-full mt-16'>
+    <main className='h-full w-full'>
       <section className='p-4'>
         <Image
           src={main1}
@@ -14,6 +14,7 @@ export default function Home() {
           height='2700'
           placeholder='blur'
           priority
+          quality='90'
           className='object-cover object-top'
           style={{ height: '80vh' }}
         />

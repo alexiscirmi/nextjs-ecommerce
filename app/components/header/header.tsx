@@ -9,12 +9,11 @@ const urbanist = Urbanist({
 export const Header = () => {
   return (
     <header
-      className={`fixed top-0 flex w-full z-20 select-none ${urbanist.className}`}
+      className={`flex w-full select-none ${urbanist.className}`}
       style={{ height: '11vh' }}
     >
       <nav className='flex bg-white justify-center items-center h-full w-full'>
-        <Burger className='absolute left-5 sm:left-16' />
-
+        <Burger className='fixed z-20 left-5 sm:left-16 bg-white rounded-full w-12 h-12 flex justify-center items-center' />
         <div className='flex'>
           <h1 id='title' className='flex justify-self-center antialiased'>
             <span className='text-3xl sm:text-5xl scale-100'>A</span>

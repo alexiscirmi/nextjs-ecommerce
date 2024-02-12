@@ -16,7 +16,7 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
   return (
     <Link
       href={url}
-      className='ps-3 py-3 mb-4 hover:bg-slate-200 border-r border-opacity-5 transition-all'
+      className='ps-3 py-3 mb-4 hover:bg-slate-200 transition-all'
       onClick={handleClick}
     >
       {text}

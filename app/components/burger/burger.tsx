@@ -15,7 +15,7 @@ export const Burger: React.FC<BurgerInterface> = ({ className }) => {
   }
 
   return (
-    <div className={className} onClick={handleClick}>
+    <div className={className}>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='32'
@@ -23,6 +23,7 @@ export const Burger: React.FC<BurgerInterface> = ({ className }) => {
         fill='currentColor'
         className='bi bi-list cursor-pointer lg:hover:scale-110 transition-all'
         viewBox='0 0 16 16'
+        onClick={handleClick}
       >
         <path
           fillRule='evenodd'

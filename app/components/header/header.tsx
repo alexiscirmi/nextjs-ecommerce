@@ -10,7 +10,7 @@ export const Header = () => {
   return (
     <header
       className={`flex w-full select-none ${urbanist.className}`}
-      style={{ height: '11vh' }}
+      style={{ height: '12vh' }}
     >
       <nav className='flex bg-white justify-center items-center h-full w-full'>
         <Burger className='fixed z-20 left-5 sm:left-16 bg-white rounded-full w-12 h-12 flex justify-center items-center' />

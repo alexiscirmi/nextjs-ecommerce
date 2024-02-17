@@ -1,6 +1,10 @@
+import { Fragment } from 'react'
+import Link from 'next/link'
 import { useAppDispatch } from '@/lib/redux/hooks'
 import { toggleSidebar } from '@/lib/redux/features/sidebarSlice'
-import Link from 'next/link'
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronRightIcon } from '@heroicons/react/20/solid'
+import { MenuItem } from './menu-item/menu-item'
 
 interface ItemInt {
   text: string
@@ -13,26 +17,44 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
     dispatch(toggleSidebar())
   }
 
-  return (
-    <Link
-      href={url}
-      className='flex justify-between items-center px-3 py-3 mb-4 hover:bg-slate-200 transition-all'
-      onClick={handleClick}
-    >
-      {text}
-      {text !== 'Home' && (
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          width='1.5em'
-          height='1.5em'
-          viewBox='0 0 24 24'
-        >
-          <path
-            fill='currentColor'
-            d='m13.292 12l-4.6-4.6l.708-.708L14.708 12L9.4 17.308l-.708-.708z'
+  if (text === 'Home') {
+    return (
+      <Link
+        href={url}
+        className='flex justify-between items-center px-3 py-3 mb-4 transition-all hover:bg-gray-100 text-gray-700'
+        onClick={handleClick}
+      >
+        {text}
+      </Link>
+    )
+  } else {
+    return (
+      <Menu as='div' className='relative mb-4 hover:bg-gray-100 text-gray-700'>
+        <Menu.Button className='px-3 py-3 flex justify-between items-center w-full'>
+          {text}
+          <ChevronRightIcon
+            className='-mr-1 h-5 w-5 text-gray-400'
+            aria-hidden='true'
           />
-        </svg>
-      )}
-    </Link>
-  )
+        </Menu.Button>
+
+        <Transition
+          as={Fragment}
+          enter='transition ease-out duration-150'
+          enterFrom='transform -translate-x-24 opacity-0'
+          enterTo='transform translate-x-0 opacity-100'
+          leave='transition ease-out duration-150'
+          leaveFrom='transform translate-x-0 opacity-100'
+          leaveTo='transform -translate-x-24 opacity-0'
+        >
+          <Menu.Items className='absolute left-48 top-0 w-56 origin-left bg-white focus:outline-none'>
+            <MenuItem text='All products' url='/products' />
+            <MenuItem text='Bags' url='' />
+            <MenuItem text='Pants' url='' />
+            <MenuItem text='Jackets' url='' />
+          </Menu.Items>
+        </Transition>
+      </Menu>
+    )
+  }
 }

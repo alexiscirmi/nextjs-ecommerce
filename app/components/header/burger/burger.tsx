@@ -3,11 +3,7 @@
 import { useAppDispatch } from '@/lib/redux/hooks'
 import { toggleSidebar } from '@/lib/redux/features/sidebarSlice'
 
-interface BurgerInterface {
-  className: string
-}
-
-export const Burger: React.FC<BurgerInterface> = ({ className }) => {
+export const Burger = () => {
   const dispatch = useAppDispatch()
 
   const handleClick = () => {
@@ -15,15 +11,17 @@ export const Burger: React.FC<BurgerInterface> = ({ className }) => {
   }
 
   return (
-    <div className={className}>
+    <div
+      className='fixed z-20 left-5 sm:left-16 bg-white rounded-full w-12 h-12 flex justify-center items-center cursor-pointer lg:hover:scale-110 transition-all'
+      onClick={handleClick}
+    >
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='32'
         height='32'
         fill='currentColor'
-        className='bi bi-list cursor-pointer lg:hover:scale-110 transition-all'
+        className='bi bi-list'
         viewBox='0 0 16 16'
-        onClick={handleClick}
       >
         <path
           fillRule='evenodd'

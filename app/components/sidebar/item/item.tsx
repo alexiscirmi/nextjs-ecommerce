@@ -21,7 +21,7 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
     return (
       <Link
         href={url}
-        className='flex justify-between items-center px-3 py-3 mb-4 transition-all hover:bg-gray-100 text-gray-700'
+        className='flex justify-between items-center px-3 py-3 mb-4 transition-all hover:bg-gray-100 '
         onClick={handleClick}
       >
         {text}
@@ -29,7 +29,7 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
     )
   } else {
     return (
-      <Menu as='div' className='relative mb-4 hover:bg-gray-100 text-gray-700'>
+      <Menu as='div' className='relative mb-4 hover:bg-gray-100'>
         <Menu.Button className='px-3 py-3 flex justify-between items-center w-full'>
           {text}
           <ChevronRightIcon
@@ -50,8 +50,8 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
           <Menu.Items className='absolute left-48 top-0 w-56 origin-left bg-white focus:outline-none'>
             <MenuItem text='All products' url='/products' />
             <MenuItem text='Bags' url='' />
-            <MenuItem text='Pants' url='' />
             <MenuItem text='Jackets' url='' />
+            <MenuItem text='Pants' url='' />
           </Menu.Items>
         </Transition>
       </Menu>

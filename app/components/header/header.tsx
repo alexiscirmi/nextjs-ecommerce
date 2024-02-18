@@ -1,20 +1,26 @@
 import { Urbanist } from 'next/font/google'
-import { Burger } from '@/app/components/burger/burger'
+import { Burger } from '@/app/components/header/burger/burger'
+import { CartIcon } from './cart-icon/cart-icon'
 
-const urbanist = Urbanist({
+const urbanist100 = Urbanist({
   subsets: ['latin'],
   weight: '100'
+})
+
+const urbanist400 = Urbanist({
+  subsets: ['latin'],
+  weight: '400'
 })
 
 export const Header = () => {
   return (
     <header
-      className={`flex w-full select-none ${urbanist.className}`}
+      className={`flex w-full select-none ${urbanist400.className}`}
       style={{ height: '12vh' }}
     >
       <nav className='flex bg-white justify-center items-center h-full w-full'>
-        <Burger className='fixed z-20 left-5 sm:left-16 bg-white rounded-full w-12 h-12 flex justify-center items-center' />
-        <div className='flex'>
+        <Burger />
+        <div className={`flex ${urbanist100.className}`}>
           <h1 id='title' className='flex justify-self-center antialiased'>
             <span className='text-3xl sm:text-5xl scale-100'>A</span>
             <span className='text-3xl sm:text-5xl -scale-x-100'>N</span>
@@ -27,6 +33,7 @@ export const Header = () => {
             <span className='mb-1'>DESIRES</span>
           </h2>
         </div>
+        <CartIcon />
       </nav>
     </header>
   )

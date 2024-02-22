@@ -39,3 +39,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 svetlanasokolova: https://www.freepik.com/author/svetlanasokolova
 bristekjegor: https://www.freepik.com/author/bristekjegor
+
+Engin Akyurt: https://pixabay.com/users/engin_akyurt-3656355/

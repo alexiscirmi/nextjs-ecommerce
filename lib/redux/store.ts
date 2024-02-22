@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import sidebarSlice from './features/sidebarSlice'
+import loadingReducer from './features/loadingSlice'
+import sidebarReducer from './features/sidebarSlice'
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      sidebar: sidebarSlice
+      loading: loadingReducer,
+      sidebar: sidebarReducer
     }
   })
 }

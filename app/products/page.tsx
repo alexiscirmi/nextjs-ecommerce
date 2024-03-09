@@ -6,7 +6,7 @@ export default function Products() {
       className='flex justify-evenly items-center h-full'
       style={{ minHeight: '88vh' }}
     >
-      <ProductsContainer />
+      <ProductsContainer params={{ category: '' }} />
     </section>
   )
 }

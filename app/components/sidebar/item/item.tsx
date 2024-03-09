@@ -49,9 +49,9 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
         >
           <Menu.Items className='absolute left-48 top-0 w-56 origin-left bg-white focus:outline-none'>
             <MenuItem text='All products' url='/products' />
-            <MenuItem text='Bags' url='' />
-            <MenuItem text='Jackets' url='' />
-            <MenuItem text='Pants' url='' />
+            <MenuItem text='Bags' url='/products/bags' />
+            <MenuItem text='Jackets' url='/products/jackets' />
+            <MenuItem text='Pants' url='/products/pants' />
           </Menu.Items>
         </Transition>
       </Menu>

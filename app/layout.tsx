@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import StoreProvider from './store-provider'
 import { Sidebar } from '@/app/components/sidebar/sidebar'
 import { Header } from '@/app/components/header/header'
+import { MainTag } from './components/main-tag/main-tag'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], weight: '300' })
@@ -23,7 +24,7 @@ export default function RootLayout({
         <StoreProvider>
           <Sidebar />
           <Header />
-          {children}
+          <MainTag>{children}</MainTag>
         </StoreProvider>
       </body>
     </html>

@@ -5,7 +5,7 @@ import main3 from '@/public/img/main3.webp'
 
 export default function Home() {
   return (
-    <main className='h-full w-full'>
+    <>
       <section className='p-4 pt-1'>
         <Image
           src={main1}
@@ -45,6 +45,6 @@ export default function Home() {
           />
         </div>
       </section>
-    </main>
+    </>
   )
 }

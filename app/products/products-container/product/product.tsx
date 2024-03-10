@@ -4,7 +4,7 @@ interface ProductInterface {
 
 export const Product = ({ name }: ProductInterface) => {
   return (
-    <div>
+    <div className='border w-72 h-96'>
       <h2>{name}</h2>
     </div>
   )

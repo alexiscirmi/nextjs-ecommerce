@@ -6,20 +6,20 @@ import { useState, useEffect } from 'react'
 import { Product } from './product/product'
 import { Spinner } from '@/app/components/spinner/spinner'
 
-interface Product {
+interface ProductInterface {
   id: string
   name: string
 }
 
-interface Params {
+interface ParamsInterface {
   params: {
     category: string
   }
 }
 
-export const ProductsContainer = ({ params }: Params) => {
+export const ProductsContainer = ({ params }: ParamsInterface) => {
   const [loading, setLoading] = useState(true)
-  const [list, setList] = useState<Product[]>([])
+  const [list, setList] = useState<ProductInterface[]>([])
 
   useEffect(() => {
     const getProducts = async () => {

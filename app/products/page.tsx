@@ -1,12 +1,10 @@
+import { ProductsSectionTag } from '../components/products-section-tag/products-section-tag'
 import { ProductsContainer } from './products-container/products-container'
 
 export default function Products() {
   return (
-    <section
-      className='flex justify-evenly items-center h-full'
-      style={{ minHeight: '88vh' }}
-    >
+    <ProductsSectionTag>
       <ProductsContainer params={{ category: '' }} />
-    </section>
+    </ProductsSectionTag>
   )
 }

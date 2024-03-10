@@ -47,7 +47,7 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
           leaveFrom='transform translate-x-0 opacity-100'
           leaveTo='transform -translate-x-24 opacity-0'
         >
-          <Menu.Items className='absolute left-48 top-0 w-56 origin-left bg-white focus:outline-none'>
+          <Menu.Items className='absolute left-48 top-0 w-56 origin-left bg-white focus:outline-none border-t border-b border-r border-slate-50'>
             <MenuItem text='All products' url='/products' />
             <MenuItem text='Bags' url='/products/bags' />
             <MenuItem text='Jackets' url='/products/jackets' />

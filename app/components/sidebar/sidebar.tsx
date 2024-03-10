@@ -8,7 +8,7 @@ export const Sidebar = () => {
 
   return (
     <aside
-      className={`fixed z-10 top-0 h-screen w-48 bg-white text-gray-700 transition-all select-none ${
+      className={`fixed z-10 top-0 h-screen w-48 bg-white text-gray-700 transition-all select-none font-extralight border border-slate-50 ${
         isOpen ? 'translate-x-0' : '-translate-x-48'
       }`}
     >

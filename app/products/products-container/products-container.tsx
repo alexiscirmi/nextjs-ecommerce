@@ -9,6 +9,9 @@ import { Spinner } from '@/app/components/spinner/spinner'
 interface ProductInterface {
   id: string
   name: string
+  price: number
+  image: string
+  stock: number
 }
 
 interface ParamsInterface {
@@ -31,6 +34,9 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
           const products = querySnapshot.docs.map((doc) => ({
             id: doc.id,
             name: doc.data().name,
+            price: doc.data().price,
+            image: doc.data().image,
+            stock: doc.data().stock,
             ...doc.data()
           }))
           setList(products)
@@ -46,6 +52,9 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
           const products = querySnapshot.docs.map((doc) => ({
             id: doc.id,
             name: doc.data().name,
+            price: doc.data().price,
+            image: doc.data().image,
+            stock: doc.data().stock,
             ...doc.data()
           }))
           setList(products)
@@ -65,7 +74,13 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
       return (
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'>
           {list.map((doc) => (
-            <Product key={doc.id} name={doc.name} />
+            <Product
+              key={doc.id}
+              name={doc.name}
+              price={doc.price}
+              image={doc.image}
+              stock={doc.stock}
+            />
           ))}
         </div>
       )
@@ -73,7 +88,13 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
       return (
         <div className='flex flex-wrap gap-7'>
           {list.map((doc) => (
-            <Product key={doc.id} name={doc.name} />
+            <Product
+              key={doc.id}
+              name={doc.name}
+              price={doc.price}
+              image={doc.image}
+              stock={doc.stock}
+            />
           ))}
         </div>
       )

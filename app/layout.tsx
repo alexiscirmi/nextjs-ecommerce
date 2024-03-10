@@ -6,7 +6,7 @@ import { Header } from '@/app/components/header/header'
 import { MainTag } from './components/main-tag/main-tag'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'], weight: '300' })
+const inter = Inter({ subsets: ['latin'], weight: ['200', '300'] })
 
 export const metadata: Metadata = {
   title: 'ANVERSO',

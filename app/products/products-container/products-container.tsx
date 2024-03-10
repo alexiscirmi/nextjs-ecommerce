@@ -61,6 +61,22 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
   if (loading) {
     return <Spinner />
   } else {
-    return list.map((doc) => <Product key={doc.id} name={doc.name} />)
+    if (list.length >= 3) {
+      return (
+        <div className='grid grid-cols-3 gap-7'>
+          {list.map((doc) => (
+            <Product key={doc.id} name={doc.name} />
+          ))}
+        </div>
+      )
+    } else {
+      return (
+        <div className='flex flex-wrap gap-7'>
+          {list.map((doc) => (
+            <Product key={doc.id} name={doc.name} />
+          ))}
+        </div>
+      )
+    }
   }
 }

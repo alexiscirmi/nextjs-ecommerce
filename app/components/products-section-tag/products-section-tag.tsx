@@ -5,7 +5,7 @@ export const ProductsSectionTag = ({
 }) => {
   return (
     <section
-      className='flex flex-wrap gap-7 justify-evenly items-center p-10'
+      className='flex flex-wrap justify-evenly items-center p-10'
       style={{ minHeight: '88vh' }}
     >
       {children}

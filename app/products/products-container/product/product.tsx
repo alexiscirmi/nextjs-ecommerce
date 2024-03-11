@@ -3,15 +3,23 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Button } from './button/button'
+import Link from 'next/link'
 
 interface ProductInterface {
+  id: string
   name: string
   price: number
   image: string
   stock: number
 }
 
-export const Product = ({ name, price, image, stock }: ProductInterface) => {
+export const Product = ({
+  id,
+  name,
+  price,
+  image,
+  stock
+}: ProductInterface) => {
   const [quantity, setQuantity] = useState(0)
 
   const minusQuantity = () => {
@@ -28,7 +36,16 @@ export const Product = ({ name, price, image, stock }: ProductInterface) => {
 
   return (
     <div className='border w-64 h-96'>
-      <Image src={image} alt={`${name} image`} width='288' height='288' />
+      <Link href={`/${id}`}>
+        <Image
+          src={image}
+          alt={`${name} image`}
+          width='288'
+          height='288'
+          title='Check product details'
+          className='cursor-pointer hover:opacity-70 transition-all'
+        />
+      </Link>
       <h2 className='pt-3'>
         <span>{name.toUpperCase()}</span>
         <span className='text-slate-400 italic font-extralight'>

@@ -76,6 +76,7 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
           {list.map((doc) => (
             <Product
               key={doc.id}
+              id={doc.id}
               name={doc.name}
               price={doc.price}
               image={doc.image}
@@ -90,6 +91,7 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
           {list.map((doc) => (
             <Product
               key={doc.id}
+              id={doc.id}
               name={doc.name}
               price={doc.price}
               image={doc.image}

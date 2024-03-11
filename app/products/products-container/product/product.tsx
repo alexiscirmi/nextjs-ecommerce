@@ -4,21 +4,15 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { Button } from './button/button'
 import Link from 'next/link'
-
-interface ProductInterface {
-  id: string
-  name: string
-  price: number
-  image: string
-  stock: number
-}
+import { type ProductInterface } from '@/types'
 
 export const Product = ({
   id,
   name,
   price,
   image,
-  stock
+  stock,
+  category
 }: ProductInterface) => {
   const [quantity, setQuantity] = useState(0)
 
@@ -36,7 +30,7 @@ export const Product = ({
 
   return (
     <div className='border w-64 h-96'>
-      <Link href={`/${id}`}>
+      <Link href={`/products/${category}/${id}`}>
         <Image
           src={image}
           alt={`${name} image`}

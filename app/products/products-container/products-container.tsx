@@ -5,14 +5,7 @@ import { collection, getDocs, orderBy, query, where } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
 import { Product } from './product/product'
 import { Spinner } from '@/app/components/spinner/spinner'
-
-interface ProductInterface {
-  id: string
-  name: string
-  price: number
-  image: string
-  stock: number
-}
+import { type ProductInterface } from '@/types'
 
 interface ParamsInterface {
   params: {
@@ -37,6 +30,7 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
             price: doc.data().price,
             image: doc.data().image,
             stock: doc.data().stock,
+            category: doc.data().categoryId,
             ...doc.data()
           }))
           setList(products)
@@ -55,6 +49,7 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
             price: doc.data().price,
             image: doc.data().image,
             stock: doc.data().stock,
+            category: doc.data().categoryId,
             ...doc.data()
           }))
           setList(products)
@@ -81,6 +76,7 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
               price={doc.price}
               image={doc.image}
               stock={doc.stock}
+              category={doc.category}
             />
           ))}
         </div>
@@ -96,6 +92,7 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
               price={doc.price}
               image={doc.image}
               stock={doc.stock}
+              category={doc.category}
             />
           ))}
         </div>

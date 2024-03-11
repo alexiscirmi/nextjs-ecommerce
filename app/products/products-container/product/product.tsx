@@ -29,7 +29,7 @@ export const Product = ({
   }
 
   return (
-    <div className='border w-64 h-96'>
+    <div className='border border-slate-200 rounded-sm w-64 h-96'>
       <Link href={`/products/${category}/${id}`}>
         <Image
           src={image}
@@ -37,7 +37,7 @@ export const Product = ({
           width='288'
           height='288'
           title='Check product details'
-          className='cursor-pointer hover:opacity-70 transition-all'
+          className='cursor-pointer rounded-t-sm hover:opacity-70 transition-all'
         />
       </Link>
       <h2 className='pt-3'>
@@ -48,15 +48,21 @@ export const Product = ({
         </span>
       </h2>
       <p className='pt-3'>U$S {price}</p>
-      <div className='pt-3 w-full flex justify-evenly items-center'>
+      <div className='pt-3 w-full flex justify-center gap-3 items-center'>
         {quantity === 0 ? (
-          <button className='border w-28 h-8' onClick={plusQuantity}>
-            Add to cart
+          <button
+            className={`border border-slate-300 rounded-sm w-28 h-9 ${
+              stock === 0 && 'text-slate-300'
+            }`}
+            onClick={plusQuantity}
+            disabled={stock === 0}
+          >
+            {stock === 0 ? 'Not available' : 'Add to cart'}
           </button>
         ) : (
           <>
             <Button sign='-' updateQuantity={minusQuantity} />
-            <span>{quantity}</span>
+            <span className='text-lg w-8'>{quantity}</span>
             <Button sign='+' updateQuantity={plusQuantity} />
           </>
         )}

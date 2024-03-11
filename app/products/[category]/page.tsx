@@ -1,10 +1,15 @@
 'use client'
 
-import { ProductsContainer } from '../products-container/products-container'
 import { ProductsSectionTag } from '@/app/components/products-section-tag/products-section-tag'
+import { ProductsContainer } from '../products-container/products-container'
 
-export default function Category({ params }: any) {
-  const { category } = params
+interface ParamsInterface {
+  params: {
+    category: string
+  }
+}
+
+export default function Category({ params }: ParamsInterface) {
   return (
     <ProductsSectionTag>
       <ProductsContainer params={params} />

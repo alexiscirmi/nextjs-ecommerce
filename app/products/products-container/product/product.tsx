@@ -4,7 +4,13 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { Button } from './button/button'
 import Link from 'next/link'
+import { useAppDispatch } from '@/lib/redux/hooks'
 import { type ProductInterface } from '@/types'
+import {
+  addProduct,
+  clearCart,
+  removeProduct
+} from '@/lib/redux/features/cartSlice'
 
 export const Product = ({
   id,
@@ -15,16 +21,35 @@ export const Product = ({
   category
 }: ProductInterface) => {
   const [quantity, setQuantity] = useState(0)
+  const dispatch = useAppDispatch()
 
   const minusQuantity = () => {
     if (quantity > 0) {
       setQuantity((prev) => prev - 1)
+
+      if (quantity > 1) {
+        const product = {
+          id: id,
+          quantity: 1
+        }
+
+        dispatch(removeProduct(product))
+      } else {
+        dispatch(clearCart())
+      }
     }
   }
 
   const plusQuantity = () => {
     if (quantity + 1 <= stock) {
       setQuantity((prev) => prev + 1)
+
+      const product = {
+        id: id,
+        quantity: 1
+      }
+
+      dispatch(addProduct(product))
     }
   }
 

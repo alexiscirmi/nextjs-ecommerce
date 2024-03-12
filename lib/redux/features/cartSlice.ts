@@ -1,9 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface Product {
-  id: number
-  name: string
-  price: number
+  id: string
   quantity: number
 }
 
@@ -20,7 +18,7 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action: PayloadAction<Product>) => {
-      const { id, name, price, quantity } = action.payload
+      const { id, quantity } = action.payload
       // Check if the product is already in the cart
       const existingProductIndex = state.products.findIndex(
         (product) => product.id === id
@@ -30,26 +28,20 @@ export const cartSlice = createSlice({
         state.products[existingProductIndex].quantity += quantity
       } else {
         // If the product is not in the cart, add it
-        state.products.push({ id, name, price, quantity })
+        state.products.push({ id, quantity })
       }
     },
-    removeProduct: (state, action: PayloadAction<number>) => {
-      const productIdToRemove = action.payload
-      state.products = state.products.filter(
-        (product) => product.id !== productIdToRemove
-      )
-    },
-    updateProductQuantity: (
+    removeProduct: (
       state,
-      action: PayloadAction<{ productId: number; quantity: number }>
+      action: PayloadAction<{ id: string; quantity: number }>
     ) => {
-      const { productId, quantity } = action.payload
-      const productToUpdate = state.products.find(
-        (product) => product.id === productId
+      const { id, quantity } = action.payload
+      // Check if the product is already in the cart
+      const existingProductIndex = state.products.findIndex(
+        (product) => product.id === id
       )
-      if (productToUpdate) {
-        productToUpdate.quantity = quantity
-      }
+      // If the product is already in the cart, update its quantity
+      state.products[existingProductIndex].quantity -= quantity
     },
     clearCart: (state) => {
       state.products = []
@@ -57,7 +49,6 @@ export const cartSlice = createSlice({
   }
 })
 
-export const { addProduct, removeProduct, updateProductQuantity, clearCart } =
-  cartSlice.actions
+export const { addProduct, removeProduct, clearCart } = cartSlice.actions
 
 export default cartSlice.reducer

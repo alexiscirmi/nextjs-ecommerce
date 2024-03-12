@@ -10,7 +10,7 @@ interface CartState {
 }
 
 const initialState: CartState = {
-  products: []
+  products: JSON.parse(localStorage.getItem('cart') || '[]') || []
 }
 
 export const cartSlice = createSlice({
@@ -30,6 +30,8 @@ export const cartSlice = createSlice({
         // If the product is not in the cart, add it
         state.products.push({ id, quantity })
       }
+
+      localStorage.setItem('cart', JSON.stringify(state.products))
     },
     removeProduct: (
       state,
@@ -42,6 +44,8 @@ export const cartSlice = createSlice({
       )
       // If the product is already in the cart, update its quantity
       state.products[existingProductIndex].quantity -= quantity
+
+      localStorage.setItem('cart', JSON.stringify(state.products))
     },
     clearCart: (state) => {
       state.products = []

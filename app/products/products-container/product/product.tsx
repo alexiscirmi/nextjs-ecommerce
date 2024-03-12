@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Button } from './button/button'
 import Link from 'next/link'
-import { useAppDispatch } from '@/lib/redux/hooks'
+import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
 import { type ProductInterface } from '@/types'
 import {
   addProduct,
@@ -22,6 +22,14 @@ export const Product = ({
 }: ProductInterface) => {
   const [quantity, setQuantity] = useState(0)
   const dispatch = useAppDispatch()
+
+  const products = useAppSelector((state) => state.cart.products)
+  useEffect(() => {
+    if (products.findIndex((product) => product.id === id) !== -1) {
+      const product = products.find((product) => product.id === id)
+      product && setQuantity(product.quantity)
+    }
+  }, [id, products])
 
   const minusQuantity = () => {
     if (quantity > 0) {

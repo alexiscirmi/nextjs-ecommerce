@@ -22,8 +22,10 @@ export const Product = ({
 }: ProductInterface) => {
   const [quantity, setQuantity] = useState(0)
   const dispatch = useAppDispatch()
-
   const products = useAppSelector((state) => state.cart.products)
+
+  console.log(products)
+
   useEffect(() => {
     if (products.findIndex((product) => product.id === id) !== -1) {
       const product = products.find((product) => product.id === id)
@@ -35,16 +37,21 @@ export const Product = ({
     if (quantity > 0) {
       setQuantity((prev) => prev - 1)
 
-      if (quantity > 1) {
-        const product = {
-          id: id,
-          quantity: 1
-        }
-
-        dispatch(removeProduct(product))
-      } else {
-        dispatch(clearCart())
+      const product = {
+        id: id,
+        quantity: 1
       }
+
+      dispatch(removeProduct(product))
+    }
+
+    const amount = products.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.quantity,
+      0
+    )
+
+    if (amount === 1) {
+      dispatch(clearCart())
     }
   }
 

@@ -1,8 +1,10 @@
 'use client'
 
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
 import { closeSidebar } from '@/lib/redux/features/sidebarSlice'
+import { localStorageCart } from '@/lib/redux/features/cartSlice'
 
 export const CartIcon = () => {
   const router = useRouter()
@@ -12,6 +14,13 @@ export const CartIcon = () => {
     dispatch(closeSidebar())
     router.push('/cart')
   }
+
+  useEffect(() => {
+    const cartData = localStorage.getItem('cart')
+    if (cartData) {
+      dispatch(localStorageCart(JSON.parse(cartData)))
+    }
+  }, [dispatch])
 
   const products = useAppSelector((state) => state.cart.products)
   const amount = products.reduce(

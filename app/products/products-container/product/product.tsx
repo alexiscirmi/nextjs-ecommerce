@@ -8,8 +8,9 @@ import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
 import { type ProductInterface } from '@/types'
 import {
   addProduct,
-  clearCart,
-  removeProduct
+  removeUnit,
+  removeProduct,
+  clearCart
 } from '@/lib/redux/features/cartSlice'
 
 export const Product = ({
@@ -34,15 +35,19 @@ export const Product = ({
   }, [id, products])
 
   const minusQuantity = () => {
-    if (quantity > 0) {
+    const product = {
+      id: id,
+      quantity: 1
+    }
+
+    if (quantity === 1) {
       setQuantity((prev) => prev - 1)
-
-      const product = {
-        id: id,
-        quantity: 1
-      }
-
       dispatch(removeProduct(product))
+    }
+
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1)
+      dispatch(removeUnit(product))
     }
 
     const amount = products.reduce(

@@ -25,8 +25,6 @@ export const Product = ({
   const dispatch = useAppDispatch()
   const products = useAppSelector((state) => state.cart.products)
 
-  console.log(products)
-
   useEffect(() => {
     if (products.findIndex((product) => product.id === id) !== -1) {
       const product = products.find((product) => product.id === id)

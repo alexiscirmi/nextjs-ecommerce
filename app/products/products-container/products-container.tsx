@@ -65,7 +65,7 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
   }, [params.category])
 
   if (loading) {
-    return <Spinner />
+    return <Spinner loadingScreen={true} />
   } else {
     if (list.length >= 3) {
       return (

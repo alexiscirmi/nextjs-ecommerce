@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import { db } from '@/lib/firebase/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { type ProductInterface } from '@/types'
+import { ProductsSectionTag } from '@/app/components/products-section-tag/products-section-tag'
+import { Spinner } from '@/app/components/spinner/spinner'
 
 interface ParamsInterface {
   params: {
@@ -15,6 +17,7 @@ export default function ProductDetails({ params }: ParamsInterface) {
   const [product, setProduct] = useState<ProductInterface | undefined>(
     undefined
   )
+  const [loading, setLoading] = useState(true)
   const { id } = params
 
   useEffect(() => {
@@ -26,11 +29,15 @@ export default function ProductDetails({ params }: ParamsInterface) {
         const productData = docSnap.data() as ProductInterface
         setProduct(productData)
       }
+
+      setLoading(true)
     }
     getProduct()
   }, [id])
 
-  if (product) {
-    return <section>{product.name}</section>
-  }
+  return (
+    <ProductsSectionTag>
+      {!product ? <Spinner loadingScreen={true} /> : product.name}
+    </ProductsSectionTag>
+  )
 }

@@ -15,11 +15,11 @@ import {
 
 export const Product = ({
   id,
+  category,
+  image,
   name,
   price,
-  image,
-  stock,
-  category
+  stock
 }: ProductInterface) => {
   const [quantity, setQuantity] = useState(0)
   const dispatch = useAppDispatch()
@@ -44,7 +44,6 @@ export const Product = ({
       setQuantity((prev) => prev - 1)
       dispatch(removeProduct(product))
     }
-
     if (quantity > 1) {
       setQuantity((prev) => prev - 1)
       dispatch(removeUnit(product))
@@ -54,7 +53,6 @@ export const Product = ({
       (accumulator, currentValue) => accumulator + currentValue.quantity,
       0
     )
-
     if (amount === 1) {
       dispatch(clearCart())
     }

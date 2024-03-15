@@ -1,8 +1,8 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { db } from '@/lib/firebase/firebase'
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore'
-import { useState, useEffect } from 'react'
 import { Product } from './product/product'
 import { Spinner } from '@/app/components/spinner/spinner'
 import { type ProductInterface } from '@/types'
@@ -26,11 +26,12 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
           )
           const products = querySnapshot.docs.map((doc) => ({
             id: doc.id,
+            category: doc.data().category,
+            description: doc.data().description,
+            image: doc.data().image,
             name: doc.data().name,
             price: doc.data().price,
-            image: doc.data().image,
             stock: doc.data().stock,
-            category: doc.data().categoryId,
             ...doc.data()
           }))
           setList(products)
@@ -39,17 +40,18 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
           const querySnapshot = await getDocs(
             query(
               collection(db, 'items'),
-              where('categoryId', '==', params.category),
+              where('category', '==', params.category),
               orderBy('name', 'asc')
             )
           )
           const products = querySnapshot.docs.map((doc) => ({
             id: doc.id,
+            category: doc.data().category,
+            description: doc.data().description,
+            image: doc.data().image,
             name: doc.data().name,
             price: doc.data().price,
-            image: doc.data().image,
             stock: doc.data().stock,
-            category: doc.data().categoryId,
             ...doc.data()
           }))
           setList(products)
@@ -72,11 +74,12 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
             <Product
               key={doc.id}
               id={doc.id}
+              category={doc.category}
+              description={doc.description}
+              image={doc.image}
               name={doc.name}
               price={doc.price}
-              image={doc.image}
               stock={doc.stock}
-              category={doc.category}
             />
           ))}
         </div>
@@ -88,11 +91,12 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
             <Product
               key={doc.id}
               id={doc.id}
+              category={doc.category}
+              description={doc.description}
+              image={doc.image}
               name={doc.name}
               price={doc.price}
-              image={doc.image}
               stock={doc.stock}
-              category={doc.category}
             />
           ))}
         </div>

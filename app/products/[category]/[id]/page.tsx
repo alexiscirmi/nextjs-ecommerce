@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { db } from '@/lib/firebase/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { type ProductInterface } from '@/types'
-import { ProductsSectionTag } from '@/app/components/products-section-tag/products-section-tag'
+import { SectionContainer } from '@/app/components/section-container/section-container'
 import { Spinner } from '@/app/components/spinner/spinner'
 
 interface ParamsInterface {
@@ -36,8 +36,8 @@ export default function ProductDetails({ params }: ParamsInterface) {
   }, [id])
 
   return (
-    <ProductsSectionTag>
+    <SectionContainer>
       {!product ? <Spinner loadingScreen={true} /> : product.name}
-    </ProductsSectionTag>
+    </SectionContainer>
   )
 }

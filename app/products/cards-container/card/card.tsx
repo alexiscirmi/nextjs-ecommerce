@@ -13,7 +13,7 @@ import {
   clearCart
 } from '@/lib/redux/features/cartSlice'
 
-export const Product = ({
+export const Card = ({
   id,
   category,
   image,

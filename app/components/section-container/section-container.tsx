@@ -1,4 +1,4 @@
-export const ProductsSectionTag = ({
+export const SectionContainer = ({
   children
 }: {
   children: React.ReactNode

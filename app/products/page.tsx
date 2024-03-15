@@ -1,10 +1,10 @@
-import { ProductsSectionTag } from '../components/products-section-tag/products-section-tag'
-import { ProductsContainer } from './products-container/products-container'
+import { SectionContainer } from '../components/section-container/section-container'
+import { CardsContainer } from './cards-container/cards-container'
 
 export default function Products() {
   return (
-    <ProductsSectionTag>
-      <ProductsContainer params={{ category: '' }} />
-    </ProductsSectionTag>
+    <SectionContainer>
+      <CardsContainer params={{ category: '' }} />
+    </SectionContainer>
   )
 }

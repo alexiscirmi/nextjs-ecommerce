@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { db } from '@/lib/firebase/firebase'
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore'
-import { Product } from './product/product'
+import { Card } from './card/card'
 import { Spinner } from '@/app/components/spinner/spinner'
 import { type ProductInterface } from '@/types'
 
@@ -13,7 +13,7 @@ interface ParamsInterface {
   }
 }
 
-export const ProductsContainer = ({ params }: ParamsInterface) => {
+export const CardsContainer = ({ params }: ParamsInterface) => {
   const [loading, setLoading] = useState(true)
   const [list, setList] = useState<ProductInterface[]>([])
 
@@ -71,7 +71,7 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
       return (
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'>
           {list.map((doc) => (
-            <Product
+            <Card
               key={doc.id}
               id={doc.id}
               category={doc.category}
@@ -88,7 +88,7 @@ export const ProductsContainer = ({ params }: ParamsInterface) => {
       return (
         <div className='flex flex-wrap gap-7'>
           {list.map((doc) => (
-            <Product
+            <Card
               key={doc.id}
               id={doc.id}
               category={doc.category}

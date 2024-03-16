@@ -38,6 +38,13 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Royalty-free images acknowledgments:
 
 svetlanasokolova: https://www.freepik.com/author/svetlanasokolova
+
 bristekjegor: https://www.freepik.com/author/bristekjegor
 
-Engin Akyurt: https://pixabay.com/users/engin_akyurt-3656355/
+Engin Akyurt: https://pixabay.com/users/engin_akyurt-3656355
+
+ge yonk: https://www.pexels.com/@geyonk
+
+personalgraphic.com: https://unsplash.com/@personal_graphic
+
+Microsoft Designer: https://designer.microsoft.com

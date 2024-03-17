@@ -67,40 +67,21 @@ export const CardsContainer = ({ params }: ParamsInterface) => {
   if (loading) {
     return <Spinner loadingScreen={true} />
   } else {
-    if (list.length >= 3) {
-      return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'>
-          {list.map((doc) => (
-            <Card
-              key={doc.id}
-              id={doc.id}
-              category={doc.category}
-              description={doc.description}
-              image={doc.image}
-              name={doc.name}
-              price={doc.price}
-              stock={doc.stock}
-            />
-          ))}
-        </div>
-      )
-    } else {
-      return (
-        <div className='flex flex-wrap gap-7'>
-          {list.map((doc) => (
-            <Card
-              key={doc.id}
-              id={doc.id}
-              category={doc.category}
-              description={doc.description}
-              image={doc.image}
-              name={doc.name}
-              price={doc.price}
-              stock={doc.stock}
-            />
-          ))}
-        </div>
-      )
-    }
+    return (
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'>
+        {list.map((doc) => (
+          <Card
+            key={doc.id}
+            id={doc.id}
+            category={doc.category}
+            description={doc.description}
+            image={doc.image}
+            name={doc.name}
+            price={doc.price}
+            stock={doc.stock}
+          />
+        ))}
+      </div>
+    )
   }
 }

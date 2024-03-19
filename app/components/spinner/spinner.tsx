@@ -1,20 +1,25 @@
 export const Spinner = ({ loadingScreen }: { loadingScreen: boolean }) => {
   if (loadingScreen) {
     return (
-      <div className='absolute bottom-1/2 flex items-center'>
+      <div className='absolute bottom-1/2 flex items-center gap-1'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           width='40'
           height='40'
-          className='bi bi-arrow-clockwise animate-spin'
-          viewBox='0 0 16 16'
+          viewBox='0 0 24 24'
+          className='animate-spin'
         >
-          <path
-            fillRule='evenodd'
-            d='M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z'
-          />
-          <path d='M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466' />
+          <g fill='black'>
+            <path
+              fill-rule='evenodd'
+              d='M12 19a7 7 0 1 0 0-14a7 7 0 0 0 0 14m0 3c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10'
+              clip-rule='evenodd'
+              opacity='0.2'
+            />
+            <path d='M2 12C2 6.477 6.477 2 12 2v3a7 7 0 0 0-7 7z' />
+          </g>
         </svg>
+        <span>Loading...</span>
       </div>
     )
   } else {
@@ -23,14 +28,18 @@ export const Spinner = ({ loadingScreen }: { loadingScreen: boolean }) => {
         xmlns='http://www.w3.org/2000/svg'
         width='40'
         height='40'
-        className='bi bi-arrow-clockwise animate-spin'
-        viewBox='0 0 16 16'
+        viewBox='0 0 24 24'
+        className='animate-spin'
       >
-        <path
-          fillRule='evenodd'
-          d='M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z'
-        />
-        <path d='M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466' />
+        <g fill='black'>
+          <path
+            fill-rule='evenodd'
+            d='M12 19a7 7 0 1 0 0-14a7 7 0 0 0 0 14m0 3c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10'
+            clip-rule='evenodd'
+            opacity='0.2'
+          />
+          <path d='M2 12C2 6.477 6.477 2 12 2v3a7 7 0 0 0-7 7z' />
+        </g>
       </svg>
     )
   }

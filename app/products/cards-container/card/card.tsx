@@ -82,7 +82,7 @@ export const Card = ({
         />
       </Link>
       <h2 className='pt-3'>
-        <span>{name.toUpperCase()}</span>
+        <span>{name}</span>
         <span className='text-slate-400 italic font-extralight'>
           {' '}
           - Stock: {stock}

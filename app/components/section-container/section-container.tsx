@@ -5,7 +5,7 @@ export const SectionContainer = ({
 }) => {
   return (
     <section
-      className='flex flex-wrap justify-evenly p-10'
+      className='flex flex-wrap justify-evenly py-3 md:py-10 px-10'
       style={{ minHeight: '88vh' }}
     >
       {children}

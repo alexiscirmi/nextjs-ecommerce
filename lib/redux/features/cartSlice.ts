@@ -6,11 +6,11 @@ interface Product {
 }
 
 interface CartState {
-  products: Product[]
+  cartProducts: Product[]
 }
 
 const initialState: CartState = {
-  products: []
+  cartProducts: []
 }
 
 export const cartSlice = createSlice({
@@ -20,18 +20,18 @@ export const cartSlice = createSlice({
     addProduct: (state, action: PayloadAction<Product>) => {
       const { id, quantity } = action.payload
       // Check if the product is already in the cart
-      const existingProductIndex = state.products.findIndex(
+      const existingProductIndex = state.cartProducts.findIndex(
         (product) => product.id === id
       )
       if (existingProductIndex !== -1) {
         // If the product is already in the cart, update its quantity
-        state.products[existingProductIndex].quantity += quantity
+        state.cartProducts[existingProductIndex].quantity += quantity
       } else {
         // If the product is not in the cart, add it
-        state.products.push({ id, quantity })
+        state.cartProducts.push({ id, quantity })
       }
 
-      localStorage.setItem('cart', JSON.stringify(state.products))
+      localStorage.setItem('cart', JSON.stringify(state.cartProducts))
     },
     removeUnit: (
       state,
@@ -39,26 +39,28 @@ export const cartSlice = createSlice({
     ) => {
       const { id, quantity } = action.payload
       // Check if the product is already in the cart
-      const existingProductIndex = state.products.findIndex(
+      const existingProductIndex = state.cartProducts.findIndex(
         (product) => product.id === id
       )
       // If the product is already in the cart, update its quantity
-      state.products[existingProductIndex].quantity -= quantity
+      state.cartProducts[existingProductIndex].quantity -= quantity
 
-      localStorage.setItem('cart', JSON.stringify(state.products))
+      localStorage.setItem('cart', JSON.stringify(state.cartProducts))
     },
     removeProduct: (state, action: PayloadAction<{ id: string }>) => {
       const { id } = action.payload
-      state.products = state.products.filter((product) => product.id !== id)
+      state.cartProducts = state.cartProducts.filter(
+        (product) => product.id !== id
+      )
 
-      localStorage.setItem('cart', JSON.stringify(state.products))
+      localStorage.setItem('cart', JSON.stringify(state.cartProducts))
     },
     localStorageCart: (state, action: PayloadAction<[]>) => {
-      state.products = action.payload
+      state.cartProducts = action.payload
     },
     clearCart: (state) => {
-      state.products = []
-      localStorage.setItem('cart', JSON.stringify(state.products))
+      state.cartProducts = []
+      localStorage.setItem('cart', JSON.stringify(state.cartProducts))
     }
   }
 })

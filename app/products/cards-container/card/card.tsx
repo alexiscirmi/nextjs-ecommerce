@@ -1,17 +1,6 @@
-'use client'
-
-import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Button } from './button/button'
 import Link from 'next/link'
-import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
 import { type ProductInterface } from '@/types'
-import {
-  addProduct,
-  removeUnit,
-  removeProduct,
-  clearCart
-} from '@/lib/redux/features/cartSlice'
 
 export const Card = ({
   id,
@@ -21,54 +10,6 @@ export const Card = ({
   price,
   stock
 }: ProductInterface) => {
-  const [quantity, setQuantity] = useState(0)
-  const dispatch = useAppDispatch()
-  const products = useAppSelector((state) => state.cart.products)
-
-  useEffect(() => {
-    if (products.findIndex((product) => product.id === id) !== -1) {
-      const product = products.find((product) => product.id === id)
-      product && setQuantity(product.quantity)
-    }
-  }, [id, products])
-
-  const minusQuantity = () => {
-    const product = {
-      id: id,
-      quantity: 1
-    }
-
-    if (quantity === 1) {
-      setQuantity((prev) => prev - 1)
-      dispatch(removeProduct(product))
-    }
-    if (quantity > 1) {
-      setQuantity((prev) => prev - 1)
-      dispatch(removeUnit(product))
-    }
-
-    const amount = products.reduce(
-      (accumulator, currentValue) => accumulator + currentValue.quantity,
-      0
-    )
-    if (amount === 1) {
-      dispatch(clearCart())
-    }
-  }
-
-  const plusQuantity = () => {
-    if (quantity + 1 <= stock) {
-      setQuantity((prev) => prev + 1)
-
-      const product = {
-        id: id,
-        quantity: 1
-      }
-
-      dispatch(addProduct(product))
-    }
-  }
-
   return (
     <div className='border border-slate-200 rounded-sm w-64 h-96'>
       <Link href={`/products/${category}/${id}`}>
@@ -88,25 +29,14 @@ export const Card = ({
           - Stock: {stock}
         </span>
       </h2>
-      <p className='pt-3'>U$S {price}</p>
-      <div className='pt-3 w-full flex justify-center gap-3 items-center'>
-        {quantity === 0 ? (
-          <button
-            className={`border border-slate-300 rounded-sm w-28 h-9 ${
-              stock === 0 && 'text-slate-300'
-            }`}
-            onClick={plusQuantity}
-            disabled={stock === 0}
-          >
-            {stock === 0 ? 'Not available' : 'Add to cart'}
-          </button>
-        ) : (
-          <>
-            <Button sign='-' updateQuantity={minusQuantity} />
-            <span className='text-lg w-8'>{quantity}</span>
-            <Button sign='+' updateQuantity={plusQuantity} />
-          </>
-        )}
+      <p className='pt-2 text-lg'>U$S {price}</p>
+      <div className='pt-2 w-full flex justify-center'>
+        <Link
+          href={`/products/${category}/${id}`}
+          className={`border border-slate-200 rounded-sm w-28 h-9 content-center hover:bg-gray-100 transition-all`}
+        >
+          See details
+        </Link>
       </div>
     </div>
   )

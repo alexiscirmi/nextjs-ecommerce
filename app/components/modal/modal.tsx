@@ -1,14 +1,68 @@
 'use client'
 
+import { useState } from 'react'
+import { auth } from '@/lib/firebase/firebase'
+import { sendSignInLinkToEmail } from 'firebase/auth'
 import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
 import { Button } from '../button/button'
 import { closeModal } from '@/lib/redux/features/modalSlice'
+import { CheckIcon } from '../check-icon/check-icon'
 
 export const Modal = () => {
   const isOn = useAppSelector((state) => state.modal.isOn)
   const dispatch = useAppDispatch()
   const handleClose = () => {
     dispatch(closeModal())
+  }
+  const [email, setEmail] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [emailSent, setEmailSent] = useState(false)
+
+  const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
+    e.preventDefault()
+
+    setLoading(true)
+
+    const sendingSimulator = async () => {
+      setTimeout(() => {
+        setLoading(false)
+        setTimeout(() => {
+          setEmailSent(true)
+          setTimeout(() => {
+            setEmailSent(false)
+            handleClose()
+          }, 2000)
+        }, 1)
+      }, 1000)
+    }
+    await sendingSimulator()
+
+    const actionCodeSettings = {
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be in the authorized domains list in the Firebase Console.
+      url: 'http://localhost:3000/',
+      // This must be true.
+      handleCodeInApp: true
+    }
+
+    // await sendSignInLinkToEmail(auth, email, actionCodeSettings)
+    //   .then(() => {
+    //     // The link was successfully sent. Inform the user.
+    //     setLoading(false)
+    //     setEmailSent(true)
+    //     // Save the email locally so you don't need to ask the user for it again
+    //     // if they open the link on the same device.
+    //     window.localStorage.setItem('emailForSignIn', email)
+    //     setTimeout(() => {
+    //       setEmailSent(false)
+    //       handleClose()
+    //     }, 2000)
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code
+    //     const errorMessage = error.message
+    //     console.log(errorCode, errorMessage)
+    //   })
   }
 
   if (isOn) {
@@ -24,15 +78,26 @@ export const Modal = () => {
           </label>
           <input
             type='email'
-            className='border border-slate-200 rounded-sm w-3/4'
+            className='border border-slate-200 rounded-sm w-3/4 p-1'
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <Button
-            type='submit'
-            text='Send link'
-            className='py-1 px-2'
-            handleClick={() => console.log('Send link button clicked')}
-            disabled={false}
-          />
+          <p className='flex items-center h-10'>
+            {emailSent ? (
+              <>
+                <CheckIcon />
+                <span>Sent!</span>
+              </>
+            ) : (
+              <Button
+                type='submit'
+                text={loading ? 'Sending...' : 'Send link'}
+                className='py-1 px-2 w-24'
+                handleClick={handleSubmit}
+                disabled={false}
+              />
+            )}
+          </p>
+
           <button
             id='close'
             className='absolute -right-4 -top-5 font-light text-slate-50'

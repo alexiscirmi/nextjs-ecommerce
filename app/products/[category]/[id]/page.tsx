@@ -13,7 +13,7 @@ import {
 } from '@/lib/redux/features/cartSlice'
 import { SectionContainer } from '@/app/components/section-container/section-container'
 import { Spinner } from '@/app/components/spinner/spinner'
-import { Button } from './button/button'
+import { Button } from '@/app/components/button/button'
 import { type ProductInterface } from '@/types'
 
 interface ParamsInterface {
@@ -101,7 +101,7 @@ export default function ProductDetails({ params }: ParamsInterface) {
             alt={`${product.name} image`}
             width='288'
             height='288'
-            className='h-fit justify-self-center md:justify-self-start'
+            className='rounded-sm border border-slate-300 h-fit justify-self-center md:justify-self-start'
           />
           <div className='md:text-right pt-5 md:pt-0'>
             <h1 className='hidden md:block text-2xl pb-4'>{product.name}</h1>
@@ -110,22 +110,36 @@ export default function ProductDetails({ params }: ParamsInterface) {
             <p className='text-3xl font-bold pb-5'>U$S {product.price}</p>
             <div className='flex justify-center md:justify-end gap-3 text-center items-center font-light text-lg'>
               {productQuantity === 0 ? (
-                <button
-                  className={`border border-slate-200 rounded-sm w-32 h-9  ${
-                    product.stock === 0
-                      ? 'text-slate-300'
-                      : 'hover:bg-gray-100 transition-all'
-                  }`}
-                  onClick={plusQuantity}
-                  disabled={product.stock === 0}
-                >
-                  {product.stock === 0 ? 'Not available' : 'Add to cart'}
-                </button>
+                <div>
+                  <Button
+                    type='button'
+                    text={product.stock === 0 ? 'Not available' : 'Add to cart'}
+                    className={`border border-slate-300 rounded-md w-32 h-9  ${
+                      product.stock === 0
+                        ? 'hover:bg-inherit text-slate-300'
+                        : 'hover:bg-gray-100 transition-all'
+                    }`}
+                    handleClick={plusQuantity}
+                    disabled={product.stock === 0}
+                  />
+                </div>
               ) : (
                 <>
-                  <Button sign='-' updateQuantity={minusQuantity} />
+                  <Button
+                    type='button'
+                    text='-'
+                    className='w-9 h-9'
+                    handleClick={minusQuantity}
+                    disabled={false}
+                  />
                   <span className='text-lg w-8'>{productQuantity}</span>
-                  <Button sign='+' updateQuantity={plusQuantity} />
+                  <Button
+                    type='button'
+                    text='+'
+                    className='w-9 h-9'
+                    handleClick={plusQuantity}
+                    disabled={false}
+                  />
                 </>
               )}
             </div>

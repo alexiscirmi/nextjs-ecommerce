@@ -4,6 +4,7 @@ import StoreProvider from './store-provider'
 import { Sidebar } from '@/app/components/sidebar/sidebar'
 import { Header } from '@/app/components/header/header'
 import { MainTag } from './components/main-tag/main-tag'
+import { Modal } from './components/modal/modal'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], weight: ['200', '300'] })
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className={`${inter.className} font-extralight antialiased`}>
         <StoreProvider>
           <Sidebar />
+          <Modal />
           <Header />
           <MainTag>{children}</MainTag>
         </StoreProvider>

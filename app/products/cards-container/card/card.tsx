@@ -11,7 +11,7 @@ export const Card = ({
   stock
 }: ProductInterface) => {
   return (
-    <div className='border border-slate-200 rounded-sm w-64 h-96'>
+    <div className='border border-slate-300 rounded-sm w-64 h-96'>
       <Link href={`/products/${category}/${id}`}>
         <Image
           src={image}
@@ -33,7 +33,7 @@ export const Card = ({
       <div className='pt-2 w-full flex justify-center'>
         <Link
           href={`/products/${category}/${id}`}
-          className={`border border-slate-200 rounded-sm w-28 h-9 content-center hover:bg-gray-100 transition-all`}
+          className={`border border-slate-300 rounded-md w-28 h-9 content-center hover:bg-gray-100 transition-all`}
         >
           See details
         </Link>

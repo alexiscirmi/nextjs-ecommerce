@@ -1,12 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
 import sidebarReducer from './features/sidebarSlice'
 import cartReducer from './features/cartSlice'
+import userReducer from './features/userSlice'
+import modalReducer from './features/modalSlice'
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       sidebar: sidebarReducer,
-      cart: cartReducer
+      cart: cartReducer,
+      user: userReducer,
+      modal: modalReducer
     }
   })
 }

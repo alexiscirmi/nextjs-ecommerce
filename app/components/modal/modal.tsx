@@ -16,7 +16,7 @@ export const Modal = () => {
       <div className='fixed z-30 bg-opacity-80 bg-black w-full h-full flex justify-center items-center'>
         <form
           id='modal'
-          className='relative w-80 h-48 border border-slate-200 rounded-sm bg-slate-50 flex flex-col justify-center items-center text-center gap-3'
+          className='relative w-72 h-56 sm:w-96 sm:h-48 border border-slate-200 rounded-sm bg-slate-50 flex flex-col justify-center items-center text-center gap-3'
         >
           <label className='text-balance'>
             Please type your email address. You will receive a link to log in

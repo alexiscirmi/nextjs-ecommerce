@@ -22,7 +22,10 @@ export const Modal = () => {
             Please type your email address. You will receive a link to log in
             (not working yet!):
           </label>
-          <input type='email' className='border border-slate-200 rounded-sm' />
+          <input
+            type='email'
+            className='border border-slate-200 rounded-sm w-3/4'
+          />
           <Button
             type='submit'
             text='Send link'

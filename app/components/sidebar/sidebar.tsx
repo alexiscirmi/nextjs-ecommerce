@@ -5,7 +5,7 @@ import { Item } from './item/item'
 
 export const Sidebar = () => {
   const isOpen = useAppSelector((state) => state.sidebar.isOpen)
-  const loggedIn = useAppSelector((state) => state.user.loggedIn)
+  const signedIn = useAppSelector((state) => state.user.signedIn)
 
   return (
     <aside
@@ -18,13 +18,13 @@ export const Sidebar = () => {
         style={{ paddingTop: '12vh' }}
       >
         <ul className='mt-3 flex flex-col'>
-          {loggedIn ? (
-            <Item text='Profile' url='/profile' />
-          ) : (
-            <Item text='Log In' url='' />
-          )}
           <Item text='Home' url='/' />
           <Item text='Products' url='/products' />
+          {signedIn ? (
+            <Item text='Profile' url='/profile' />
+          ) : (
+            <Item text='Sign In' url='' />
+          )}
         </ul>
 
         <div className='flex flex-col text-center opacity-30 gap-1'>

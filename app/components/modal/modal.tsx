@@ -18,24 +18,26 @@ export const Modal = () => {
   const [loading, setLoading] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
 
+  // Firebase Authentication email link sign-in:
   const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault()
 
     setLoading(true)
 
-    const sendingSimulator = async () => {
-      setTimeout(() => {
-        setLoading(false)
-        setTimeout(() => {
-          setEmailSent(true)
-          setTimeout(() => {
-            setEmailSent(false)
-            handleClose()
-          }, 2000)
-        }, 1)
-      }, 1000)
-    }
-    await sendingSimulator()
+    // Test code for not using Firebase daily quota:
+    // const sendingSimulator = async () => {
+    //   setTimeout(() => {
+    //     setLoading(false)
+    //     setTimeout(() => {
+    //       setEmailSent(true)
+    //       setTimeout(() => {
+    //         setEmailSent(false)
+    //         handleClose()
+    //       }, 2000)
+    //     }, 1)
+    //   }, 1000)
+    // }
+    // await sendingSimulator()
 
     const actionCodeSettings = {
       // URL you want to redirect back to. The domain (www.example.com) for this
@@ -45,24 +47,24 @@ export const Modal = () => {
       handleCodeInApp: true
     }
 
-    // await sendSignInLinkToEmail(auth, email, actionCodeSettings)
-    //   .then(() => {
-    //     // The link was successfully sent. Inform the user.
-    //     setLoading(false)
-    //     setEmailSent(true)
-    //     // Save the email locally so you don't need to ask the user for it again
-    //     // if they open the link on the same device.
-    //     window.localStorage.setItem('emailForSignIn', email)
-    //     setTimeout(() => {
-    //       setEmailSent(false)
-    //       handleClose()
-    //     }, 2000)
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code
-    //     const errorMessage = error.message
-    //     console.log(errorCode, errorMessage)
-    //   })
+    await sendSignInLinkToEmail(auth, email, actionCodeSettings)
+      .then(() => {
+        // The link was successfully sent. Inform the user.
+        setLoading(false)
+        setEmailSent(true)
+        // Save the email locally so you don't need to ask the user for it again
+        // if they open the link on the same device.
+        window.localStorage.setItem('emailForSignIn', email)
+        setTimeout(() => {
+          setEmailSent(false)
+          handleClose()
+        }, 2000)
+      })
+      .catch((error) => {
+        const errorCode = error.code
+        const errorMessage = error.message
+        console.log(errorCode, errorMessage)
+      })
   }
 
   if (isOn) {
@@ -73,7 +75,7 @@ export const Modal = () => {
           className='relative w-72 h-56 sm:w-96 sm:h-48 border border-slate-200 rounded-sm bg-slate-50 flex flex-col justify-center items-center text-center gap-3'
         >
           <label className='text-balance'>
-            Please type your email address. You will receive a link to log in
+            Please type your email address. You will receive a link to sign in
             (not working yet!):
           </label>
           <input
@@ -97,7 +99,6 @@ export const Modal = () => {
               />
             )}
           </p>
-
           <button
             id='close'
             className='absolute -right-4 -top-5 font-light text-slate-50'

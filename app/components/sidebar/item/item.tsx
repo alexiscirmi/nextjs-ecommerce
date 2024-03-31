@@ -22,10 +22,10 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
   }
 
   switch (text) {
-    case 'Log In':
+    case 'Sign In':
       return (
         <p
-          className='flex justify-between items-center px-3 py-3 mb-4 transition-all hover:bg-gray-100'
+          className='flex justify-between items-center px-3 py-3 mb-4 transition-all hover:bg-gray-100 cursor-pointer'
           onClick={handleModal}
         >
           {text}

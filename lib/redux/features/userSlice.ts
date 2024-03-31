@@ -1,26 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 interface SignedInInterface {
-  loggedIn: boolean
+  signedIn: boolean
 }
 
 const initialState: SignedInInterface = {
-  loggedIn: false
+  signedIn: false
 }
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    logIn: (state) => {
-      state.loggedIn = true
+    signIn: (state) => {
+      state.signedIn = true
     },
-    logOut: (state) => {
-      state.loggedIn = false
+    signOut: (state) => {
+      state.signedIn = false
     }
   }
 })
 
-export const { logIn, logOut } = userSlice.actions
+export const { signIn, signOut } = userSlice.actions
 
 export default userSlice.reducer

@@ -1,11 +1,33 @@
 'use client'
 
-import { useAppSelector } from '@/lib/redux/hooks'
+import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
+import { signIn, signOut } from '@/lib/redux/features/userSlice'
+import { auth } from '@/lib/firebase/firebase'
+import { onAuthStateChanged } from 'firebase/auth'
 import { Item } from './item/item'
+import { useEffect } from 'react'
 
 export const Sidebar = () => {
   const isOpen = useAppSelector((state) => state.sidebar.isOpen)
   const signedIn = useAppSelector((state) => state.user.signedIn)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid
+        console.log(user)
+        dispatch(signIn())
+        // ...
+      } else {
+        // User is signed out
+        dispatch(signOut())
+        // ...
+      }
+    })
+  })
 
   return (
     <aside

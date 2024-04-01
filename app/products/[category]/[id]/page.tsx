@@ -117,7 +117,7 @@ export default function ProductDetails({ params }: ParamsInterface) {
                     className={`border border-slate-300 rounded-md w-32 h-9  ${
                       product.stock === 0
                         ? 'hover:bg-inherit text-slate-300'
-                        : 'hover:bg-gray-100 transition-all'
+                        : 'hover:bg-gray-200'
                     }`}
                     handleClick={plusQuantity}
                     disabled={product.stock === 0}

@@ -13,7 +13,6 @@
     "@heroicons/react": "^2.1.1",
     "@reduxjs/toolkit": "^2.2.2",
     "firebase": "^10.10.0",
-    "firebaseui": "^6.1.0",
     "next": "^14.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

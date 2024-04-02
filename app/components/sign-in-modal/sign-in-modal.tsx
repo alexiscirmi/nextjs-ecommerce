@@ -1,10 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { auth } from '@/lib/firebase/firebase'
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword
 } from 'firebase/auth'
 import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
@@ -22,8 +23,14 @@ export const SignInModal = () => {
   const [newPassword, setNewPassword] = useState('')
   const [loading1, setLoading1] = useState(false)
   const [loading2, setLoading2] = useState(false)
+  const [message, setMessage] = useState<undefined | string>(undefined)
 
-  // Firebase Authentication email link sign-in:
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage(undefined)
+    }, 5000)
+  }, [message])
+
   const handleSignIn = async (e: React.SyntheticEvent<EventTarget>) => {
     if (
       email.includes('@') &&
@@ -37,15 +44,26 @@ export const SignInModal = () => {
       await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in
+          setLoading1(false)
           const user = userCredential.user
           console.log('Signed In:', user)
-          setLoading1(false)
           dispatch(closeModal())
-          // ...
         })
         .catch((error) => {
+          setLoading1(false)
           const errorCode = error.code
           const errorMessage = error.message
+          switch (errorCode) {
+            case 'auth/invalid-credential':
+              setMessage('Please, check your data is correct.')
+              break
+            case 'auth/too-many-requests':
+              setMessage(
+                'Too many attempts. Reset your password or try again later.'
+              )
+            default:
+              break
+          }
           console.log(errorCode, errorMessage)
         })
     }
@@ -72,13 +90,29 @@ export const SignInModal = () => {
             await sendEmailVerification(auth.currentUser).then(() => {
               // Email verification sent!
               console.log('Email verification sent!')
-              // ...
             })
           }
           setLoading2(false)
           dispatch(closeModal())
         })
         .catch(async (error) => {
+          setLoading2(false)
+          const errorCode = error.code
+          const errorMessage = error.message
+          console.log(errorCode, errorMessage)
+        })
+    }
+  }
+
+  const handleResetPassword = (e: React.SyntheticEvent<EventTarget>) => {
+    if (email.includes('@') && email.indexOf('@') !== 0 && email.length >= 8) {
+      e.preventDefault()
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          // Password reset email sent!
+          dispatch(closeModal())
+        })
+        .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
           console.log(errorCode, errorMessage)
@@ -91,13 +125,17 @@ export const SignInModal = () => {
       <div className='fixed z-30 bg-opacity-80 bg-black w-full h-full flex justify-center items-center'>
         <form
           id='modal'
-          className='relative w-80 sm:w-96 h-80 p-1 mx-6 border border-slate-200 rounded-md bg-slate-50 flex flex-col justify-center items-center text-left gap-3'
+          className='relative w-80 sm:w-96 h-96 p-1 mx-6 border border-slate-200 rounded-md bg-slate-50 flex flex-col justify-center items-center text-left gap-3'
         >
-          <h1 className='w-4/5 text-center'>
-            Sign in or create a new account (verification email will be sent).
+          <h1 className='w-5/6 text-center text-slate-600'>
+            Sign in or create a new account
           </h1>
 
-          <fieldset className='flex flex-col w-4/5'>
+          <h2 className='w-5/6 h-6 text-center text-red-600 text-xs transition-all'>
+            {message}
+          </h2>
+
+          <fieldset className='flex flex-col w-5/6'>
             <label htmlFor='email' className='text-left'>
               Email address:
             </label>
@@ -110,7 +148,7 @@ export const SignInModal = () => {
             />
           </fieldset>
 
-          <div className='flex gap-3 w-4/5'>
+          <div className='flex gap-3 w-5/6'>
             <fieldset className='flex flex-col'>
               <label htmlFor='password' className='text-left'>
                 Password:
@@ -134,7 +172,17 @@ export const SignInModal = () => {
             />
           </div>
 
-          <div className='flex gap-3 w-4/5 border-t border-slate-300 pt-2'>
+          <div className='w-5/6 flex justify-center'>
+            <button
+              type='submit'
+              className='text-sm text-balance text-blue-600 hover:underline'
+              onClick={handleResetPassword}
+            >
+              I forgot my password, send me an email
+            </button>
+          </div>
+
+          <div className='flex gap-3 w-5/6 border-t border-slate-300 pt-2'>
             <fieldset className='flex flex-col'>
               <label htmlFor='password2' className='text-left  text-sm'>
                 Repeat password:

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { auth } from '@/lib/firebase/firebase'
 import {
   createUserWithEmailAndPassword,
+  sendEmailVerification,
   signInWithEmailAndPassword
 } from 'firebase/auth'
 import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
@@ -38,6 +39,7 @@ export const SignInModal = () => {
           // Signed in
           const user = userCredential.user
           console.log('Signed In:', user)
+          setLoading1(false)
           dispatch(closeModal())
           // ...
         })
@@ -62,10 +64,18 @@ export const SignInModal = () => {
       setLoading2(true)
 
       await createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then(async (userCredential) => {
           // Signed up
           const user = userCredential.user
           console.log('User created:', user)
+          if (auth.currentUser) {
+            await sendEmailVerification(auth.currentUser).then(() => {
+              // Email verification sent!
+              console.log('Email verification sent!')
+              // ...
+            })
+          }
+          setLoading2(false)
           dispatch(closeModal())
         })
         .catch(async (error) => {
@@ -81,9 +91,13 @@ export const SignInModal = () => {
       <div className='fixed z-30 bg-opacity-80 bg-black w-full h-full flex justify-center items-center'>
         <form
           id='modal'
-          className='relative w-72 h-60 sm:w-96 sm:h-64 border border-slate-200 rounded-md bg-slate-50 flex flex-col justify-center items-center text-left gap-3'
+          className='relative w-80 sm:w-96 h-80 p-1 mx-6 border border-slate-200 rounded-md bg-slate-50 flex flex-col justify-center items-center text-left gap-3'
         >
-          <fieldset className='flex flex-col w-3/4'>
+          <h1 className='w-4/5 text-center'>
+            Sign in or create a new account (verification email will be sent).
+          </h1>
+
+          <fieldset className='flex flex-col w-4/5'>
             <label htmlFor='email' className='text-left'>
               Email address:
             </label>
@@ -96,7 +110,7 @@ export const SignInModal = () => {
             />
           </fieldset>
 
-          <div className='flex gap-3 w-3/4'>
+          <div className='flex gap-3 w-4/5'>
             <fieldset className='flex flex-col'>
               <label htmlFor='password' className='text-left'>
                 Password:
@@ -113,14 +127,14 @@ export const SignInModal = () => {
 
             <Button
               type='submit'
-              text={loading1 ? 'Wait...' : 'Sign In'}
+              text={loading1 ? 'Wait...' : 'Sign in'}
               className='py-1 px-2 w-28 h-8 self-end'
               handleClick={handleSignIn}
               disabled={false}
             />
           </div>
 
-          <div className='flex gap-3 w-3/4'>
+          <div className='flex gap-3 w-4/5'>
             <fieldset className='flex flex-col'>
               <label htmlFor='password2' className='text-left  text-sm'>
                 Repeat password:
@@ -138,7 +152,7 @@ export const SignInModal = () => {
 
             <Button
               type='submit'
-              text={loading2 ? 'Wait...' : 'Sign Up'}
+              text={loading2 ? 'Wait...' : 'Sign up'}
               className={`py-1 px-2 w-28 h-8  self-end ${
                 newPassword !== password || newPassword.length < 8
                   ? 'hover:bg-transparent text-slate-300'
@@ -151,7 +165,7 @@ export const SignInModal = () => {
 
           <button
             id='close'
-            className='absolute -right-4 -top-5 font-light text-slate-50'
+            className='absolute z-20 -right-4 -top-5 bg-black border border-slate-300 rounded-full w-7 h-7 text-white font-light'
             onClick={handleClose}
           >
             X

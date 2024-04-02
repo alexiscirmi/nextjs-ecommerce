@@ -39,14 +39,15 @@ export const Sidebar = () => {
         className='h-full flex flex-col justify-between'
         style={{ paddingTop: '12vh' }}
       >
-        <ul className='mt-3 flex flex-col'>
+        <ul className='mt-3 flex flex-col h-full'>
           <Item text='Home' url='/' />
           <Item text='Products' url='/products' />
           {signedIn ? (
             <Item text='Profile' url='/profile' />
           ) : (
-            <Item text='Sign In' url='' />
+            <Item text='Sign in' url='' />
           )}
+          {signedIn && <Item text='Sign out' url='' />}
         </ul>
 
         <div className='flex flex-col text-center opacity-30 gap-1'>

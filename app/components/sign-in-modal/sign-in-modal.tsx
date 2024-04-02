@@ -134,7 +134,7 @@ export const SignInModal = () => {
             />
           </div>
 
-          <div className='flex gap-3 w-4/5'>
+          <div className='flex gap-3 w-4/5 border-t border-slate-300 pt-2'>
             <fieldset className='flex flex-col'>
               <label htmlFor='password2' className='text-left  text-sm'>
                 Repeat password:

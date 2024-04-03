@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 import StoreProvider from './store-provider'
 import { Sidebar } from '@/app/components/sidebar/sidebar'
 import { Header } from '@/app/components/header/header'
-import { MainTag } from './components/main-tag/main-tag'
 import { SignInModal } from './components/sign-in-modal/sign-in-modal'
 import './globals.css'
 
@@ -26,7 +25,9 @@ export default function RootLayout({
           <Sidebar />
           <SignInModal />
           <Header />
-          <MainTag>{children}</MainTag>
+          <main className='w-full text-center' style={{ minHeight: '88vh' }}>
+            {children}
+          </main>
         </StoreProvider>
       </body>
     </html>

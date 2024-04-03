@@ -25,7 +25,7 @@ interface ParamsInterface {
 export default function ProductDetails({ params }: ParamsInterface) {
   const { id } = params
   const [loading, setLoading] = useState(true)
-  const [product, setProduct] = useState<ProductInterface | undefined>(
+  const [product, setProduct] = useState<undefined | ProductInterface>(
     undefined
   )
   const cartProducts = useAppSelector((state) => state.cart.cartProducts)

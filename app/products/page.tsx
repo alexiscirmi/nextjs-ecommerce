@@ -1,4 +1,4 @@
-import { SectionContainer } from '../components/section-container/section-container'
+import { SectionContainer } from './section-container/section-container'
 import { CardsContainer } from './cards-container/cards-container'
 
 export default function Products() {

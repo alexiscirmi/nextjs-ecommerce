@@ -24,7 +24,7 @@ export const MenuItem: React.FC<ItemInt> = ({ text, url }) => {
       {({ active }) => (
         <Link
           href={url}
-          className={classNames(active ? 'bg-gray-100' : '', 'block px-3 py-3')}
+          className={classNames(active ? 'bg-gray-100' : '', 'block px-8 py-3')}
           onClick={handleClick}
         >
           {text}

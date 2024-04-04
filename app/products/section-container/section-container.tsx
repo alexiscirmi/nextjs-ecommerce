@@ -1,3 +1,4 @@
+// Container for /products pages
 export const SectionContainer = ({
   children
 }: {

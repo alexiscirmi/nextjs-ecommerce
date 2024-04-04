@@ -6,7 +6,7 @@ import { openModal } from '@/lib/redux/features/modalSlice'
 import { auth } from '@/lib/firebase/firebase'
 import { signOut } from 'firebase/auth'
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronRightIcon } from '@heroicons/react/20/solid'
+import { ChevronLeftIcon } from '@heroicons/react/20/solid'
 import { MenuItem } from './menu-item/menu-item'
 
 interface ItemInt {
@@ -37,7 +37,7 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
       return (
         <Link
           href={url}
-          className='flex justify-between items-center px-3 py-3 mb-4 transition-all hover:bg-gray-100'
+          className='px-8 py-3 mb-4 transition-all hover:bg-gray-100'
           onClick={handleClick}
         >
           {text}
@@ -46,7 +46,7 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
     case 'Sign in':
       return (
         <li
-          className='flex justify-between items-center px-3 py-3 mb-4 transition-all hover:bg-gray-100 cursor-pointer'
+          className='px-8 py-3 mb-4 transition-all hover:bg-gray-100 cursor-pointer'
           onClick={handleModal}
         >
           {text}
@@ -56,7 +56,7 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
       return (
         <Link
           href={url}
-          className='flex justify-between items-center px-3 py-3 mb-4 transition-all hover:bg-gray-100'
+          className='px-8 py-3 mb-4 transition-all hover:bg-gray-100'
           onClick={handleClick}
         >
           {text}
@@ -66,7 +66,7 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
       return (
         <li className='flex items-end h-full'>
           <span
-            className='w-full px-3 py-3 mb-4 hover:bg-gray-100 transition-all cursor-pointer'
+            className='w-full text-center px-8 py-3 mb-4 hover:bg-gray-100 transition-all cursor-pointer'
             onClick={handleSignOut}
           >
             Sign out
@@ -76,9 +76,9 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
     default:
       return (
         <Menu as='div' className='relative mb-4 hover:bg-gray-100'>
-          <Menu.Button className='px-3 py-3 flex justify-between items-center w-full'>
+          <Menu.Button className='flex justify-between px-8 py-3 items-center w-full'>
             {text}
-            <ChevronRightIcon
+            <ChevronLeftIcon
               className='-mr-1 h-5 w-5 text-gray-400'
               aria-hidden='true'
             />
@@ -87,13 +87,13 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
           <Transition
             as={Fragment}
             enter='transition ease-out duration-150'
-            enterFrom='transform -translate-x-24 opacity-0'
+            enterFrom='transform translate-x-24 opacity-0'
             enterTo='transform translate-x-0 opacity-100'
             leave='transition ease-out duration-150'
-            leaveFrom='transform translate-x-0 opacity-100'
-            leaveTo='transform -translate-x-24 opacity-0'
+            leaveFrom='transform translate-x-0  opacity-100'
+            leaveTo='transform translate-x-24 opacity-0'
           >
-            <Menu.Items className='absolute left-48 top-0 w-56 origin-left bg-white focus:outline-none border-t border-b border-r border-slate-50'>
+            <Menu.Items className='absolute right-48 top-0 w-40 origin-right bg-slate-50 focus:outline-none border-t border-b border-l border-slate-100'>
               <MenuItem text='All products' url='/products' />
               <MenuItem text='Bags' url='/products/bags' />
               <MenuItem text='Jackets' url='/products/jackets' />

@@ -1,4 +1,4 @@
-import { SectionContainer } from '../components/section-container/section-container'
+import { SectionContainer } from '../products/section-container/section-container'
 
 export default function Profile() {
   return (

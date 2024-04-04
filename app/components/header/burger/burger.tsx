@@ -12,7 +12,7 @@ export const Burger = () => {
 
   return (
     <div
-      className='fixed z-20 left-5 sm:left-16 bg-white rounded-full w-12 h-12 flex justify-center items-center cursor-pointer lg:hover:scale-110 transition-all'
+      className='fixed z-20 right-5 sm:right-16 bg-white rounded-full w-12 h-12 flex justify-center items-center cursor-pointer lg:hover:scale-110 transition-all'
       onClick={handleClick}
     >
       <svg

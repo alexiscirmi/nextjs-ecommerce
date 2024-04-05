@@ -31,7 +31,7 @@ export const Sidebar = () => {
   return (
     <aside
       className={`fixed z-10 top-0 right-0 h-screen w-48 bg-slate-50 text-gray-700 transition-all select-none font-extralight border-l border-slate-100 ${
-        isOpen ? 'translate-x-48' : 'translate-x-0'
+        isOpen ? 'translate-x-0' : 'translate-x-48'
       }`}
     >
       <div

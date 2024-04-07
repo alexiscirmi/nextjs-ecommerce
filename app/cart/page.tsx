@@ -1,10 +1,34 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useAppSelector } from '@/lib/redux/hooks'
+import { db } from '@/lib/firebase/firebase'
+import { doc, getDoc } from 'firebase/firestore'
 import { CartProduct } from './cart-product/cart-product'
+import { Spinner } from '../components/spinner/spinner'
+import { type CartInterface } from '@/types'
 
 export default function Cart() {
   const cartProducts = useAppSelector((state) => state.cart.cartProducts)
+  const [total, setTotal] = useState<undefined | number>(undefined)
+
+  useEffect(() => {
+    let cartTotal = 0
+    cartProducts.forEach(async (product) => {
+      const getProduct = async () => {
+        const docRef = doc(db, 'items', product.id)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+          const productData = docSnap.data() as CartInterface
+          if (productData.price) {
+            cartTotal = cartTotal + productData.price * product.quantity
+          }
+        }
+      }
+      await getProduct()
+      setTotal(cartTotal)
+    })
+  }, [cartProducts])
 
   return (
     <section
@@ -32,7 +56,7 @@ export default function Cart() {
       })}
       <div className='grid grid-cols-5 items-center font-light border-t mt-4 py-4'>
         <span className='col-span-4'>TOTAL</span>
-        <span>Total</span>
+        <span>{total ? `$ ${total}` : <Spinner loadingScreen={false} />}</span>
       </div>
     </section>
   )

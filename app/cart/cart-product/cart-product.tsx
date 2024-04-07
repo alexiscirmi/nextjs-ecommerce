@@ -3,20 +3,10 @@ import { db } from '@/lib/firebase/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { Spinner } from '@/app/components/spinner/spinner'
 import Image from 'next/image'
-import { StaticImport } from 'next/dist/shared/lib/get-img-props'
+import { type CartInterface } from '@/types'
 
-interface ProductInterface {
-  quantity: number
-  image: string | StaticImport
-  name: undefined | string
-  id: string
-  price: undefined | number
-}
-
-export const CartProduct: React.FC<ProductInterface> = ({ id, quantity }) => {
-  const [product, setProduct] = useState<undefined | ProductInterface>(
-    undefined
-  )
+export const CartProduct: React.FC<CartInterface> = ({ id, quantity }) => {
+  const [product, setProduct] = useState<undefined | CartInterface>(undefined)
 
   useEffect(() => {
     const getProduct = async () => {
@@ -24,7 +14,7 @@ export const CartProduct: React.FC<ProductInterface> = ({ id, quantity }) => {
       const docSnap = await getDoc(docRef)
 
       if (docSnap.exists()) {
-        const productData = docSnap.data() as ProductInterface
+        const productData = docSnap.data() as CartInterface
         setProduct(productData)
       }
     }
@@ -43,8 +33,8 @@ export const CartProduct: React.FC<ProductInterface> = ({ id, quantity }) => {
       <div className='grid grid-cols-5 items-center'>
         <Image
           src={product.image}
-          height='144'
-          width='144'
+          height='120'
+          width='120'
           alt={`${product.name} image`}
         />
         <h2>{product.name}</h2>

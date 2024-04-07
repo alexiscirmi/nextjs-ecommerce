@@ -7,3 +7,11 @@ export interface ProductInterface {
   price: number
   stock: number
 }
+
+export interface CartInterface {
+  quantity: number
+  image: string
+  name: undefined | string
+  id: string
+  price: undefined | number
+}

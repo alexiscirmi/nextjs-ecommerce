@@ -1,6 +1,6 @@
 interface ButtonInterface {
   type: 'button' | 'submit'
-  text: string
+  text: string | React.ReactNode
   className: string
   handleClick: React.MouseEventHandler<HTMLButtonElement>
   disabled: boolean
@@ -16,7 +16,7 @@ export const Button = ({
   return (
     <button
       type={type}
-      className={`border border-slate-300 rounded-md hover:bg-gray-200 font-light transition-all ${className}`}
+      className={`flex justify-center items-center border border-slate-300 rounded-md hover:bg-gray-200 font-light transition-all ${className}`}
       onClick={handleClick}
       disabled={disabled}
     >

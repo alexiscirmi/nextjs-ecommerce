@@ -11,6 +11,7 @@ import {
 import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
 import { Button } from '../button/button'
 import { closeModal } from '@/lib/redux/features/modalSlice'
+import { Spinner } from '../spinner/spinner'
 
 export const SignInModal = () => {
   const isOn = useAppSelector((state) => state.modal.isOn)
@@ -26,9 +27,11 @@ export const SignInModal = () => {
   const [message, setMessage] = useState<undefined | string>(undefined)
 
   useEffect(() => {
-    setTimeout(() => {
-      setMessage(undefined)
-    }, 5000)
+    if (message) {
+      setTimeout(() => {
+        setMessage(undefined)
+      }, 5000)
+    }
   }, [message])
 
   const handleSignIn = async (e: React.SyntheticEvent<EventTarget>) => {
@@ -99,6 +102,13 @@ export const SignInModal = () => {
           setLoading2(false)
           const errorCode = error.code
           const errorMessage = error.message
+          switch (errorCode) {
+            case 'auth/email-already-in-use':
+              setMessage('The email is already registered.')
+              break
+            default:
+              break
+          }
           console.log(errorCode, errorMessage)
         })
     }
@@ -165,7 +175,7 @@ export const SignInModal = () => {
 
             <Button
               type='submit'
-              text={loading1 ? 'Wait...' : 'Sign in'}
+              text={loading1 ? <Spinner loadingScreen={false} /> : 'Sign in'}
               className='py-1 px-2 w-28 h-8 self-end'
               handleClick={handleSignIn}
               disabled={false}
@@ -200,7 +210,7 @@ export const SignInModal = () => {
 
             <Button
               type='submit'
-              text={loading2 ? 'Wait...' : 'Sign up'}
+              text={loading2 ? <Spinner loadingScreen={false} /> : 'Sign up'}
               className={`py-1 px-2 w-28 h-8  self-end ${
                 newPassword !== password || newPassword.length < 8
                   ? 'hover:bg-transparent text-slate-300'

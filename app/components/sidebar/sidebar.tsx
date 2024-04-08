@@ -1,7 +1,12 @@
 'use client'
 
 import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
-import { signIn, signOut } from '@/lib/redux/features/userSlice'
+import {
+  signIn,
+  signOut,
+  userOk,
+  userFalse
+} from '@/lib/redux/features/userSlice'
 import { auth } from '@/lib/firebase/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { Item } from './item/item'
@@ -10,6 +15,7 @@ import { useEffect } from 'react'
 export const Sidebar = () => {
   const isOpen = useAppSelector((state) => state.sidebar.isOpen)
   const signedIn = useAppSelector((state) => state.user.signedIn)
+  const userState = useAppSelector((state) => state.user.userState)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -19,10 +25,12 @@ export const Sidebar = () => {
         // https://firebase.google.com/docs/reference/js/auth.user
         const uid = user.uid
         dispatch(signIn())
+        dispatch(userOk(user))
         // ...
       } else {
         // User is signed out
         dispatch(signOut())
+        dispatch(userFalse())
         // ...
       }
     })

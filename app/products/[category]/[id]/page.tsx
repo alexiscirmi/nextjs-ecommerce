@@ -90,7 +90,7 @@ export default function ProductDetails({ params }: ParamsInterface) {
   }
 
   return (
-    <SectionContainer>
+    <SectionContainer className=''>
       {!product ? (
         <Spinner loadingScreen={true} />
       ) : (

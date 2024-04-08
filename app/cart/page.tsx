@@ -34,7 +34,7 @@ export default function Cart() {
 
   if (loading) {
     return (
-      <SectionContainer>
+      <SectionContainer className=''>
         <Spinner loadingScreen={true} />
       </SectionContainer>
     )

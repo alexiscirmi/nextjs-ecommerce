@@ -3,7 +3,7 @@ import { CardsContainer } from './cards-container/cards-container'
 
 export default function Products() {
   return (
-    <SectionContainer>
+    <SectionContainer className=''>
       <CardsContainer params={{ category: '' }} />
     </SectionContainer>
   )

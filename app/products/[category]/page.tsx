@@ -1,6 +1,6 @@
 'use client'
 
-import { SectionContainer } from '@/app/products/section-container/section-container'
+import { SectionContainer } from '@/app/components/section-container/section-container'
 import { CardsContainer } from '../cards-container/cards-container'
 
 interface ParamsInterface {

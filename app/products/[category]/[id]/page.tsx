@@ -11,7 +11,7 @@ import {
   removeProduct,
   clearCart
 } from '@/lib/redux/features/cartSlice'
-import { SectionContainer } from '@/app/products/section-container/section-container'
+import { SectionContainer } from '@/app/components/section-container/section-container'
 import { Spinner } from '@/app/components/spinner/spinner'
 import { Button } from '@/app/components/button/button'
 import { type ProductInterface } from '@/types'

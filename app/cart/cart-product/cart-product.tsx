@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react'
 import { db } from '@/lib/firebase/firebase'
 import { doc, getDoc } from 'firebase/firestore'
-import { Spinner } from '@/app/components/spinner/spinner'
 import Image from 'next/image'
-import { type CartInterface } from '@/types'
+
+interface CartInterface {
+  quantity: number
+  image: string
+  name: undefined | string
+  id: string
+  price: undefined | number
+}
 
 export const CartProduct: React.FC<CartInterface> = ({ id, quantity }) => {
   const [product, setProduct] = useState<undefined | CartInterface>(undefined)
@@ -24,8 +30,12 @@ export const CartProduct: React.FC<CartInterface> = ({ id, quantity }) => {
 
   if (!product) {
     return (
-      <div className='flex justify-center items-center'>
-        <Spinner loadingScreen={false} />
+      <div className='grid grid-cols-5 items-center animate-pulse'>
+        <div className='h-24 w-24 bg-gray-200 rounded my-1 mx-auto'></div>
+        <div className='h-6 bg-gray-200 rounded mx-auto w-3/4'></div>
+        <div className='h-6 bg-gray-200 rounded mx-auto w-1/4'></div>
+        <div className='h-6 bg-gray-200 rounded mx-auto w-1/4'></div>
+        <div className='h-6 bg-gray-200 rounded mx-auto w-1/4'></div>
       </div>
     )
   } else {
@@ -33,9 +43,10 @@ export const CartProduct: React.FC<CartInterface> = ({ id, quantity }) => {
       <div className='grid grid-cols-5 items-center'>
         <Image
           src={product.image}
-          height='120'
-          width='120'
+          height='96'
+          width='96'
           alt={`${product.name} image`}
+          className='my-1 mx-auto'
         />
         <h2>{product.name}</h2>
         <span>$ {product.price}</span>

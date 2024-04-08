@@ -1,12 +1,7 @@
 'use client'
 
 import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
-import {
-  signIn,
-  signOut,
-  userOk,
-  userFalse
-} from '@/lib/redux/features/userSlice'
+import { signedIn, signedOut } from '@/lib/redux/features/userSlice'
 import { auth } from '@/lib/firebase/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { Item } from './item/item'
@@ -14,7 +9,6 @@ import { useEffect } from 'react'
 
 export const Sidebar = () => {
   const isOpen = useAppSelector((state) => state.sidebar.isOpen)
-  const signedIn = useAppSelector((state) => state.user.signedIn)
   const userState = useAppSelector((state) => state.user.userState)
   const dispatch = useAppDispatch()
 
@@ -23,14 +17,11 @@ export const Sidebar = () => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
-        const uid = user.uid
-        dispatch(signIn())
-        dispatch(userOk(user))
+        dispatch(signedIn(user))
         // ...
       } else {
         // User is signed out
-        dispatch(signOut())
-        dispatch(userFalse())
+        dispatch(signedOut())
         // ...
       }
     })
@@ -49,12 +40,18 @@ export const Sidebar = () => {
         <ul className='mt-3 flex flex-col h-full'>
           <Item text='Home' url='/' />
           <Item text='Products' url='/products' />
-          {signedIn ? (
+
+          {userState === null ? (
+            <li className='px-8 py-3 mb-4 transition-all cursor-pointer animate-pulse'>
+              <div className='h-6 bg-gray-200 rounded' />
+            </li>
+          ) : userState ? (
             <Item text='Profile' url='/profile' />
           ) : (
             <Item text='Sign in' url='' />
           )}
-          {signedIn && <Item text='Sign out' url='' />}
+
+          {userState && <Item text='Sign out' url='' />}
         </ul>
 
         <div className='flex flex-col text-center opacity-30 gap-1'>

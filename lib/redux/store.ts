@@ -3,6 +3,7 @@ import sidebarReducer from './features/sidebarSlice'
 import cartReducer from './features/cartSlice'
 import userReducer from './features/userSlice'
 import modalReducer from './features/modalSlice'
+import profilePageReducer from './features/profilePageSlice'
 
 export const makeStore = () => {
   return configureStore({
@@ -10,7 +11,8 @@ export const makeStore = () => {
       sidebar: sidebarReducer,
       cart: cartReducer,
       user: userReducer,
-      modal: modalReducer
+      modal: modalReducer,
+      mode: profilePageReducer
     }
   })
 }

@@ -11,7 +11,7 @@ interface ParamsInterface {
 
 export default function Category({ params }: ParamsInterface) {
   return (
-    <SectionContainer className=''>
+    <SectionContainer>
       <CardsContainer params={params} />
     </SectionContainer>
   )

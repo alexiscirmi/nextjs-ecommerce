@@ -1,9 +1,10 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { SectionContainer } from '../components/section-container/section-container'
-import { Spinner } from '../components/spinner/spinner'
 import { useAppSelector } from '@/lib/redux/hooks'
+import { Spinner } from '../components/spinner/spinner'
+import { Dashboard } from './dashboard/dashboard'
+import { SectionContainer } from '@/app/components/section-container/section-container'
 
 export default function Profile() {
   const { userState } = useAppSelector((state) => state.user)
@@ -17,7 +18,7 @@ export default function Profile() {
       const emailVerified = userState.emailVerified
       const uid = userState.uid
       return (
-        <SectionContainer className=''>
+        <section className='py-3 md:pt-10 pb-20'>
           {displayName ? (
             <h1 className='text-2xl'>Hello, {displayName}!</h1>
           ) : (
@@ -25,18 +26,15 @@ export default function Profile() {
               Hello, {email?.slice(0, email?.indexOf('@'))}!
             </h1>
           )}
-          {/* <div className='grid grid-cols-5'>
-            <aside className='col-span-1'></aside>
-            <div className='col-span-4'></div>
-          </div> */}
-        </SectionContainer>
+          <Dashboard />
+        </section>
       )
     } else {
       router.push('/')
     }
   } else {
     return (
-      <SectionContainer className=''>
+      <SectionContainer>
         <Spinner loadingScreen={true} />
       </SectionContainer>
     )

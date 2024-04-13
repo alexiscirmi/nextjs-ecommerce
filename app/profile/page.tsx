@@ -14,11 +14,8 @@ export default function Profile() {
     if (userState) {
       const displayName = userState.displayName
       const email = userState.email
-      const photoURL = userState.photoURL
-      const emailVerified = userState.emailVerified
-      const uid = userState.uid
       return (
-        <section className='py-3 md:pt-10 pb-20'>
+        <section className='py-3 md:pt-10 pb-20 h-full'>
           {displayName ? (
             <h1 className='text-2xl'>Hello, {displayName}!</h1>
           ) : (

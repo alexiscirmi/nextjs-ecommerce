@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useAppSelector } from '@/lib/redux/hooks'
+import { useRouter } from 'next/navigation'
 import { db } from '@/lib/firebase/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { CartProduct } from './cart-product/cart-product'
@@ -12,24 +13,30 @@ export default function Cart() {
   const cartProducts = useAppSelector((state) => state.cart.cartProducts)
   const [loading, setLoading] = useState(true)
   const [total, setTotal] = useState<undefined | number>(undefined)
+  const router = useRouter()
 
   useEffect(() => {
+    setTotal(undefined)
     let cartTotal = 0
-    cartProducts.forEach(async (product) => {
-      const getProduct = async () => {
+
+    const calculateTotal = async () => {
+      for (const product of cartProducts) {
         const docRef = doc(db, 'items', product.id)
         const docSnap = await getDoc(docRef)
+
         if (docSnap.exists()) {
           const productData = docSnap.data()
           if (productData.price) {
-            cartTotal = cartTotal + productData.price * product.quantity
+            cartTotal += productData.price * product.quantity
           }
         }
       }
-      await getProduct()
+
       setTotal(cartTotal)
       setLoading(false)
-    })
+    }
+
+    calculateTotal()
   }, [cartProducts])
 
   if (loading) {
@@ -38,6 +45,8 @@ export default function Cart() {
         <Spinner loadingScreen={true} />
       </SectionContainer>
     )
+  } else if (cartProducts.length === 0) {
+    router.push('/')
   } else {
     return (
       <section
@@ -60,12 +69,21 @@ export default function Cart() {
               name={undefined}
               id={product.id}
               price={undefined}
+              stock={undefined}
             />
           )
         })}
         <div className='grid grid-cols-5 items-center font-light border-t mt-4 py-4'>
           <span className='col-span-4'>TOTAL</span>
-          <span>$ {total}</span>
+          <span>
+            {total ? (
+              `$ ${total}`
+            ) : (
+              <div className='flex justify-center items-center h-4'>
+                <Spinner loadingScreen={false} />
+              </div>
+            )}
+          </span>
         </div>
       </section>
     )

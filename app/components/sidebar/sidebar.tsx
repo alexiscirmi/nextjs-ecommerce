@@ -17,7 +17,8 @@ export const Sidebar = () => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
-        dispatch(signedIn(user))
+        const { uid, email, displayName } = user
+        dispatch(signedIn({ uid, email, displayName }))
         // ...
       } else {
         // User is signed out
@@ -25,7 +26,7 @@ export const Sidebar = () => {
         // ...
       }
     })
-  })
+  }, [dispatch])
 
   return (
     <aside

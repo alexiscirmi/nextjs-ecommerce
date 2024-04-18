@@ -15,11 +15,14 @@ export default function Profile() {
       const displayName = userState.displayName
       const email = userState.email
       return (
-        <section className='py-3 md:pt-10 pb-20 h-full'>
+        <section
+          className='grid grid-rows-10 py-3 md:pt-10 pb-10 h-full'
+          style={{ height: '88vh' }}
+        >
           {displayName ? (
-            <h1 className='text-2xl'>Hello, {displayName}!</h1>
+            <h1 className='text-2xl row-span-1'>Hello, {displayName}!</h1>
           ) : (
-            <h1 className='text-2xl'>
+            <h1 className='text-2xl row-span-1'>
               Hello, {email?.slice(0, email?.indexOf('@'))}!
             </h1>
           )}

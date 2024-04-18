@@ -14,8 +14,8 @@ export const ProfileSidebar = () => {
   }
 
   return (
-    <aside className='grid col-span-2 mx-auto w-fit'>
-      <ul className='flex flex-col h-full w-fit gap-1'>
+    <aside className='grid col-span-2 bg-slate-50 text-gray-700 transition-all select-none font-extralight border-r border-slate-100'>
+      <ul className='mt-3 flex flex-col h-full'>
         <Item text='Your information' onClick={handleInfoClick} />
         <Item text='Orders' onClick={handleOrdersClick} />
       </ul>

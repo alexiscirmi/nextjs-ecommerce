@@ -1,20 +1,14 @@
 import { useAppSelector } from '@/lib/redux/hooks'
+import { InfoDetail } from './info-detail/info-detail'
+import { OrdersDetail } from './orders-detail/orders-detail'
 
 export const ProfileDetail = () => {
   const { profilePageState } = useAppSelector((state) => state.mode)
 
-  switch (profilePageState) {
-    case 'info':
-      return (
-        <div className='col-span-3 border-l h-full border-slate-200'>info</div>
-      )
-    case 'orders':
-      return (
-        <div className='col-span-3 border-l h-full border-slate-200'>
-          orders
-        </div>
-      )
-    default:
-      break
-  }
+  return (
+    <div className='col-span-4 h-full border-slate-200 mt-3'>
+      {profilePageState === 'info' && <InfoDetail />}
+      {profilePageState === 'orders' && <OrdersDetail />}
+    </div>
+  )
 }

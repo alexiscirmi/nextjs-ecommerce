@@ -37,7 +37,7 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
       return (
         <Link
           href={url}
-          className='px-8 py-3 mb-4 transition-all hover:bg-gray-100'
+          className='px-8 py-3 mb-4 transition-all hover:bg-slate-100'
           onClick={handleClick}
         >
           {text}
@@ -46,7 +46,7 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
     case 'Sign in':
       return (
         <li
-          className='px-8 py-3 mb-4 transition-all hover:bg-gray-100 cursor-pointer'
+          className='px-8 py-3 mb-4 transition-all hover:bg-slate-100 cursor-pointer'
           onClick={handleModal}
         >
           {text}
@@ -56,7 +56,7 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
       return (
         <Link
           href={url}
-          className='px-8 py-3 mb-4 transition-all hover:bg-gray-100'
+          className='px-8 py-3 mb-4 transition-all hover:bg-slate-100'
           onClick={handleClick}
         >
           {text}
@@ -66,7 +66,7 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
       return (
         <li className='flex items-end h-full'>
           <span
-            className='w-full text-center px-8 py-3 mb-4 hover:bg-gray-100 transition-all cursor-pointer'
+            className='w-full text-center px-8 py-3 mb-4 hover:bg-slate-100 transition-all cursor-pointer'
             onClick={handleSignOut}
           >
             Sign out
@@ -75,11 +75,11 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
       )
     default:
       return (
-        <Menu as='div' className='relative mb-4 hover:bg-gray-100'>
+        <Menu as='div' className='relative mb-4 hover:bg-slate-100'>
           <Menu.Button className='flex justify-between px-8 py-3 items-center w-full'>
             {text}
             <ChevronLeftIcon
-              className='-mr-1 h-5 w-5 text-gray-400'
+              className='-mr-1 h-5 w-5 text-slate-400'
               aria-hidden='true'
             />
           </Menu.Button>

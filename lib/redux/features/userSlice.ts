@@ -4,6 +4,7 @@ interface SerializableUser {
   uid: null | string
   email: null | string
   displayName: null | string
+  [key: string]: null | string
 }
 
 interface SignedInInterface {

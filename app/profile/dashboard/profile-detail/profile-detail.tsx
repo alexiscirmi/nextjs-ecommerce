@@ -6,7 +6,7 @@ export const ProfileDetail = () => {
   const { profilePageState } = useAppSelector((state) => state.mode)
 
   return (
-    <div className='col-span-4 h-full border-slate-200 mt-8'>
+    <div className='mt-8'>
       {profilePageState === 'info' && <InfoDetail />}
       {profilePageState === 'orders' && <OrdersDetail />}
     </div>

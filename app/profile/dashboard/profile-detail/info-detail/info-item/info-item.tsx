@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from 'react'
+import { SetStateAction, useState } from 'react'
 import { useAppSelector } from '@/lib/redux/hooks'
 import { SaveButton } from './buttons/save-button'
 import { CancelButton } from './buttons/cancel-button'
@@ -12,8 +12,8 @@ interface InfoItemInterface {
 export const InfoItem = ({ id, label }: InfoItemInterface) => {
   const { userState } = useAppSelector((state) => state.user)
   const [editing, setEditing] = useState(false)
-  const [data, setData] = useState('')
 
+  const [data, setData] = useState('')
   const handleInput = (e: { target: { value: SetStateAction<string> } }) => {
     setData(e.target.value)
   }

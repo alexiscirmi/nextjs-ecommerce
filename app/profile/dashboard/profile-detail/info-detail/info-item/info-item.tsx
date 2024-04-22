@@ -19,21 +19,34 @@ export const InfoItem = ({ id, label }: InfoItemInterface) => {
   }
 
   return (
-    <form>
-      <label htmlFor={id}>{label}</label>
+    <form className='grid grid-cols-4 md:grid-cols-3 m-3 items-center justify-center'>
+      <label
+        htmlFor={id}
+        className='flex justify-center md:justify-end md:px-16'
+      >
+        {label}
+      </label>
       <input
         id={id}
+        type={id === 'email' ? 'email' : 'text'}
         placeholder={userState ? userState[id] || label : label}
         onChange={handleInput}
         readOnly={!editing}
+        className='col-span-2 md:col-span-1 placeholder-current flex justify-center border border-slate-100 rounded-md p-1'
       />
       {editing ? (
-        <>
-          <SaveButton id={id} setEditing={setEditing} data={data} />
-          <CancelButton setEditing={setEditing} />
-        </>
+        <div className='flex justify-center md:justify-start md:px-16 gap-1'>
+          <div className='flex justify-center w-16 gap-4'>
+            <SaveButton id={id} setEditing={setEditing} data={data} />
+            <CancelButton setEditing={setEditing} />
+          </div>
+        </div>
       ) : (
-        <EditButton setEditing={setEditing} />
+        <div className='flex justify-center md:justify-start md:px-16'>
+          <div className='flex justify-center w-16'>
+            <EditButton setEditing={setEditing} />
+          </div>
+        </div>
       )}
     </form>
   )

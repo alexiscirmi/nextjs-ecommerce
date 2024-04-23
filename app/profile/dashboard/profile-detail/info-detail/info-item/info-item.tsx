@@ -13,9 +13,14 @@ export const InfoItem = ({ id, label }: InfoItemInterface) => {
   const { userState } = useAppSelector((state) => state.user)
   const [editing, setEditing] = useState(false)
 
-  const [data, setData] = useState('')
+  const [inputValue, setInputValue] = useState(
+    userState ? userState[id] || label : label
+  )
   const handleInput = (e: { target: { value: SetStateAction<string> } }) => {
-    setData(e.target.value)
+    setInputValue(e.target.value)
+  }
+  const resetInputValue = () => {
+    setInputValue(userState ? userState[id] || label : label)
   }
 
   return (
@@ -29,16 +34,24 @@ export const InfoItem = ({ id, label }: InfoItemInterface) => {
       <input
         id={id}
         type={id === 'email' ? 'email' : 'text'}
-        placeholder={userState ? userState[id] || label : label}
         onChange={handleInput}
         readOnly={!editing}
+        value={inputValue}
         className='col-span-2 md:col-span-1 placeholder-current flex justify-center border border-slate-100 rounded-md p-1'
       />
       {editing ? (
         <div className='flex justify-center md:justify-start md:px-16 gap-1'>
           <div className='flex justify-center w-16 gap-4'>
-            <SaveButton id={id} setEditing={setEditing} data={data} />
-            <CancelButton setEditing={setEditing} />
+            <SaveButton
+              id={id}
+              setEditing={setEditing}
+              inputValue={inputValue}
+            />
+            <CancelButton
+              setEditing={setEditing}
+              setInputValue={setInputValue}
+              resetInputValue={resetInputValue}
+            />
           </div>
         </div>
       ) : (

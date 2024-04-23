@@ -1,28 +1,58 @@
 import { Dispatch, SetStateAction } from 'react'
 import { auth } from '@/lib/firebase/firebase'
-import { updateProfile } from 'firebase/auth'
+import {
+  onAuthStateChanged,
+  updateProfile,
+  verifyBeforeUpdateEmail
+} from 'firebase/auth'
+import { signedIn, signedOut } from '@/lib/redux/features/userSlice'
+import { useAppDispatch } from '@/lib/redux/hooks'
 
 interface SaveButton {
   id: string
   setEditing: Dispatch<SetStateAction<boolean>>
-  data: string
+  inputValue: string
 }
 
-export const SaveButton = ({ id, setEditing, data }: SaveButton) => {
+export const SaveButton = ({ id, setEditing, inputValue }: SaveButton) => {
+  const dispatch = useAppDispatch()
+
   const handleClick = async () => {
     if (auth.currentUser) {
       switch (id) {
         case 'displayName':
           updateProfile(auth.currentUser, {
-            displayName: data
+            displayName: inputValue
           })
             .then(() => {
               // Profile updated!
+              onAuthStateChanged(auth, (user) => {
+                if (user) {
+                  // User is signed in
+                  const { uid, email, displayName } = user
+                  dispatch(signedIn({ uid, email, displayName }))
+                } else {
+                  // User is signed out
+                  dispatch(signedOut())
+                }
+              })
             })
             .catch((error) => {
               // An error occurred
               console.log(error)
             })
+          break
+
+        case 'email':
+          verifyBeforeUpdateEmail(auth.currentUser, inputValue)
+            .then(() => {
+              // Email updated!
+            })
+            .catch((error) => {
+              // An error occurred
+              console.log(error)
+            })
+
           break
 
         default:

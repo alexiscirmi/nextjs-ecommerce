@@ -2,10 +2,13 @@ import { Dispatch, SetStateAction } from 'react'
 
 interface CancelButton {
   setEditing: Dispatch<SetStateAction<boolean>>
+  setInputValue: Dispatch<SetStateAction<string>>
+  resetInputValue: () => void
 }
 
-export const CancelButton = ({ setEditing }: CancelButton) => {
+export const CancelButton = ({ setEditing, resetInputValue }: CancelButton) => {
   const handleClick = () => {
+    resetInputValue()
     setEditing(false)
   }
 

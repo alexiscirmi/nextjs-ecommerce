@@ -9,16 +9,14 @@ import {
   signInWithEmailAndPassword
 } from 'firebase/auth'
 import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
-import { Button } from '../button/button'
+import { ModalBase } from '../modal-base/modal-base'
+import { Button } from '../../button/button'
 import { closeModal } from '@/lib/redux/features/modalSlice'
-import { Spinner } from '../spinner/spinner'
+import { Spinner } from '../../spinner/spinner'
 
 export const SignInModal = () => {
   const isOn = useAppSelector((state) => state.modal.isOn)
   const dispatch = useAppDispatch()
-  const handleClose = () => {
-    dispatch(closeModal())
-  }
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
@@ -132,11 +130,8 @@ export const SignInModal = () => {
 
   if (isOn) {
     return (
-      <div className='fixed z-30 bg-opacity-80 bg-black w-full h-full flex justify-center items-center'>
-        <form
-          id='modal'
-          className='relative w-80 sm:w-96 h-96 p-1 mx-6 border border-slate-200 rounded-md bg-slate-50 flex flex-col justify-center items-center text-left gap-3'
-        >
+      <ModalBase>
+        <form className='flex flex-col justify-center items-center gap-3'>
           <h1 className='w-5/6 text-center text-slate-600'>
             Sign in or create a new account
           </h1>
@@ -220,16 +215,8 @@ export const SignInModal = () => {
               disabled={newPassword !== password || newPassword.length < 8}
             />
           </div>
-
-          <button
-            id='close'
-            className='absolute z-20 -right-4 -top-5 bg-black border border-slate-300 rounded-full w-7 h-7 text-white font-light'
-            onClick={handleClose}
-          >
-            X
-          </button>
         </form>
-      </div>
+      </ModalBase>
     )
   }
 }

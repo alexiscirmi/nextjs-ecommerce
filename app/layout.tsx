@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import StoreProvider from './store-provider'
 import { Sidebar } from '@/app/components/sidebar/sidebar'
 import { Header } from '@/app/components/header/header'
-import { SignInModal } from './components/sign-in-modal/sign-in-modal'
+import { SignInModal } from './components/modals/sign-in-modal/sign-in-modal'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], weight: ['200', '300'] })

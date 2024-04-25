@@ -2,11 +2,14 @@ import { Dispatch, SetStateAction } from 'react'
 import { auth } from '@/lib/firebase/firebase'
 import {
   onAuthStateChanged,
+  signOut,
   updateProfile,
   verifyBeforeUpdateEmail
 } from 'firebase/auth'
 import { signedIn, signedOut } from '@/lib/redux/features/userSlice'
 import { useAppDispatch } from '@/lib/redux/hooks'
+import { openModal } from '@/lib/redux/features/modalSlice'
+import { Slide, toast } from 'react-toastify'
 
 interface SaveButton {
   id: string
@@ -50,7 +53,30 @@ export const SaveButton = ({ id, setEditing, inputValue }: SaveButton) => {
             })
             .catch((error) => {
               // An error occurred
-              console.log(error)
+              const errorCode = error.code
+              console.log(errorCode)
+              if (errorCode === 'auth/requires-recent-login') {
+                signOut(auth)
+                  .then(() => {
+                    // Sign-out successful.
+                    toast.info('Session expired. Please, sign in again.', {
+                      position: 'bottom-left',
+                      autoClose: 4000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: 'light',
+                      transition: Slide
+                    })
+                    dispatch(openModal())
+                  })
+                  .catch((error) => {
+                    // An error happened.
+                    console.log(error)
+                  })
+              }
             })
 
           break

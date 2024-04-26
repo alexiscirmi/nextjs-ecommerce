@@ -59,17 +59,7 @@ export const SaveButton = ({ id, setEditing, inputValue }: SaveButton) => {
                 signOut(auth)
                   .then(() => {
                     // Sign-out successful.
-                    toast.info('Session expired. Please, sign in again.', {
-                      position: 'bottom-left',
-                      autoClose: 4000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: 'light',
-                      transition: Slide
-                    })
+                    toast.info('Session expired. Please, sign in again.')
                     dispatch(openModal())
                   })
                   .catch((error) => {

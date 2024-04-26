@@ -26,7 +26,7 @@ export default function RootLayout({
         <StoreProvider>
           <Sidebar />
           <ToastContainer
-            className='rounded-md text-balance'
+            progressStyle={{ background: 'black' }}
             position='bottom-left'
             autoClose={4000}
             hideProgressBar={false}

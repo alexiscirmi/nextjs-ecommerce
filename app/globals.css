@@ -6,3 +6,15 @@ html,
 body {
   height: 100%;
 }
+
+/* Toastify styles */
+:root {
+  --toastify-icon-color-info: #000;
+  --toastify-color-progress-info: rgb(100 116 139);
+}
+.Toastify__toast {
+  background-color: whitesmoke;
+  border: 1px solid rgb(203 213 225);
+  border-radius: 0.375rem;
+  text-wrap: balance;
+}

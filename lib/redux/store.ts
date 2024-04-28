@@ -2,7 +2,8 @@ import { configureStore } from '@reduxjs/toolkit'
 import sidebarReducer from './features/sidebarSlice'
 import cartReducer from './features/cartSlice'
 import userReducer from './features/userSlice'
-import modalReducer from './features/modalSlice'
+import signInModalReducer from './features/signInModalSlice'
+import checkoutReducer from './features/checkoutModalSlice'
 import profilePageReducer from './features/profilePageSlice'
 
 export const makeStore = () => {
@@ -11,7 +12,8 @@ export const makeStore = () => {
       sidebar: sidebarReducer,
       cart: cartReducer,
       user: userReducer,
-      modal: modalReducer,
+      signInModal: signInModalReducer,
+      checkoutModal: checkoutReducer,
       mode: profilePageReducer
     }
   })

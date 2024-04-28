@@ -7,3 +7,7 @@ export interface ProductInterface {
   price: number
   stock: number
 }
+
+export interface ModalInterface {
+  isOn: boolean
+}

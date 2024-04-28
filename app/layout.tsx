@@ -4,9 +4,10 @@ import StoreProvider from './store-provider'
 import { Sidebar } from '@/app/components/sidebar/sidebar'
 import { Header } from '@/app/components/header/header'
 import { SignInModal } from './components/modals/sign-in-modal/sign-in-modal'
+import { CheckoutModal } from './components/modals/checkout-modal/checkout-modal'
 import { Slide, ToastContainer } from 'react-toastify'
-import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], weight: ['200', '300'] })
 
@@ -40,6 +41,7 @@ export default function RootLayout({
             transition={Slide}
           />
           <SignInModal />
+          <CheckoutModal />
           <Header />
           <main className='w-full text-center' style={{ minHeight: '88vh' }}>
             {children}

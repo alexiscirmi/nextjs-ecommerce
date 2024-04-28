@@ -1,16 +1,9 @@
-import { closeModal } from '@/lib/redux/features/modalSlice'
-import { useAppDispatch } from '@/lib/redux/hooks'
-
 interface ModalInterface {
   children: React.ReactNode
+  handleClick: () => void
 }
 
-export const ModalBase = ({ children }: ModalInterface) => {
-  const dispatch = useAppDispatch()
-  const handleClose = () => {
-    dispatch(closeModal())
-  }
-
+export const ModalBase = ({ children, handleClick }: ModalInterface) => {
   return (
     <section
       id='modal'
@@ -21,7 +14,7 @@ export const ModalBase = ({ children }: ModalInterface) => {
         <button
           id='close'
           className='absolute z-20 -right-4 -top-5 bg-black border border-slate-300 rounded-full w-7 h-7 text-white font-light'
-          onClick={handleClose}
+          onClick={handleClick}
         >
           X
         </button>

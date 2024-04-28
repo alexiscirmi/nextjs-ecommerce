@@ -8,8 +8,8 @@ import {
 } from 'firebase/auth'
 import { signedIn, signedOut } from '@/lib/redux/features/userSlice'
 import { useAppDispatch } from '@/lib/redux/hooks'
-import { openModal } from '@/lib/redux/features/modalSlice'
-import { Slide, toast } from 'react-toastify'
+import { openSignInModal } from '@/lib/redux/features/signInModalSlice'
+import { toast } from 'react-toastify'
 
 interface SaveButton {
   id: string
@@ -60,7 +60,7 @@ export const SaveButton = ({ id, setEditing, inputValue }: SaveButton) => {
                   .then(() => {
                     // Sign-out successful.
                     toast.info('Session expired. Please, sign in again.')
-                    dispatch(openModal())
+                    dispatch(openSignInModal())
                   })
                   .catch((error) => {
                     // An error happened.

@@ -11,18 +11,21 @@ import {
 import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
 import { ModalBase } from '../modal-base/modal-base'
 import { Button } from '../../button/button'
-import { closeModal } from '@/lib/redux/features/modalSlice'
+import { closeSignInModal } from '@/lib/redux/features/signInModalSlice'
 import { Spinner } from '../../spinner/spinner'
 
 export const SignInModal = () => {
-  const isOn = useAppSelector((state) => state.modal.isOn)
-  const dispatch = useAppDispatch()
+  const isOn = useAppSelector((state) => state.signInModal.isOn)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [loading1, setLoading1] = useState(false)
   const [loading2, setLoading2] = useState(false)
   const [message, setMessage] = useState<undefined | string>(undefined)
+  const dispatch = useAppDispatch()
+  const handleClose = () => {
+    dispatch(closeSignInModal())
+  }
 
   useEffect(() => {
     if (message) {
@@ -48,7 +51,7 @@ export const SignInModal = () => {
           setLoading1(false)
           const user = userCredential.user
           console.log('Signed In:', user)
-          dispatch(closeModal())
+          dispatch(closeSignInModal())
         })
         .catch((error) => {
           setLoading1(false)
@@ -94,7 +97,7 @@ export const SignInModal = () => {
             })
           }
           setLoading2(false)
-          dispatch(closeModal())
+          dispatch(closeSignInModal())
         })
         .catch(async (error) => {
           setLoading2(false)
@@ -118,7 +121,7 @@ export const SignInModal = () => {
       sendPasswordResetEmail(auth, email)
         .then(() => {
           // Password reset email sent!
-          dispatch(closeModal())
+          dispatch(closeSignInModal())
         })
         .catch((error) => {
           const errorCode = error.code
@@ -130,7 +133,7 @@ export const SignInModal = () => {
 
   if (isOn) {
     return (
-      <ModalBase>
+      <ModalBase handleClick={handleClose}>
         <form className='flex flex-col justify-center items-center gap-3'>
           <h1 className='w-5/6 text-center text-slate-600'>
             Sign in or create a new account

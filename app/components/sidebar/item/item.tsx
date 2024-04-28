@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import Link from 'next/link'
 import { useAppDispatch } from '@/lib/redux/hooks'
 import { toggleSidebar } from '@/lib/redux/features/sidebarSlice'
-import { openModal } from '@/lib/redux/features/modalSlice'
+import { openSignInModal } from '@/lib/redux/features/signInModalSlice'
 import { auth } from '@/lib/firebase/firebase'
 import { signOut } from 'firebase/auth'
 import { Menu, Transition } from '@headlessui/react'
@@ -20,7 +20,7 @@ export const Item: React.FC<ItemInt> = ({ text, url }) => {
     dispatch(toggleSidebar())
   }
   const handleModal = () => {
-    dispatch(openModal())
+    dispatch(openSignInModal())
   }
   const handleSignOut = () => {
     signOut(auth)

@@ -1,13 +1,19 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useAppSelector } from '@/lib/redux/hooks'
+import { useAppSelector, useAppDispatch } from '@/lib/redux/hooks'
 import { useRouter } from 'next/navigation'
 import { db } from '@/lib/firebase/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { CartProduct } from './cart-product/cart-product'
 import { Spinner } from '@/app/components/spinner/spinner'
 import { SectionContainer } from '@/app/components/section-container/section-container'
+import { Button } from '../components/button/button'
+import Swal from 'sweetalert2-uncensored'
+import { clearCart } from '@/lib/redux/features/cartSlice'
+import { auth } from '@/lib/firebase/firebase'
+import { openCheckoutModal } from '@/lib/redux/features/checkoutModalSlice'
+import { openSignInModal } from '@/lib/redux/features/signInModalSlice'
 
 export default function Cart() {
   const cartProducts = useAppSelector((state) => state.cart.cartProducts)
@@ -38,6 +44,31 @@ export default function Cart() {
 
     calculateTotal()
   }, [cartProducts])
+
+  const dispatch = useAppDispatch()
+
+  const handleClear = () => {
+    Swal.fire({
+      title: 'Do you want to clear the cart?',
+      showCancelButton: true,
+      confirmButtonText: 'Clear',
+      confirmButtonColor: 'rgb(248 250 252)',
+      cancelButtonColor: 'rgb(248 250 252)',
+      focusCancel: true
+    }).then((result: { isConfirmed: any }) => {
+      if (result.isConfirmed) {
+        dispatch(clearCart())
+      }
+    })
+  }
+
+  const handleBuy = () => {
+    if (auth.currentUser) {
+      dispatch(openCheckoutModal())
+    } else {
+      dispatch(openSignInModal())
+    }
+  }
 
   if (loading) {
     return (
@@ -84,6 +115,22 @@ export default function Cart() {
               </div>
             )}
           </span>
+        </div>
+        <div className='flex justify-center gap-16'>
+          <Button
+            type='button'
+            text='Clear cart'
+            className='w-28'
+            handleClick={handleClear}
+            disabled={false}
+          />
+          <Button
+            type='button'
+            text='Buy'
+            className='w-28 bg-slate'
+            handleClick={handleBuy}
+            disabled={false}
+          />
         </div>
       </section>
     )

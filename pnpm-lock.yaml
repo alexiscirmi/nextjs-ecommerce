@@ -39,8 +39,8 @@ importers:
         specifier: ^0.33.3
         version: 0.33.3
       sweetalert2-uncensored:
-        specifier: 11.10.8-uncensored
-        version: 11.10.8-uncensored
+        specifier: 11.10.8-1-uncensored
+        version: 11.10.8-1-uncensored
     devDependencies:
       '@types/node':
         specifier: ^20.11.30
@@ -1923,8 +1923,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  sweetalert2-uncensored@11.10.8-uncensored:
-    resolution: {integrity: sha512-r2F4hDw7MxQo/zyJhMG6yPVL3819mP7WULLBY/YaPtQjAGeGXwR8+tMt+R7fmRrrxIBtss1fmbTE0JIT5gCQpQ==}
+  sweetalert2-uncensored@11.10.8-1-uncensored:
+    resolution: {integrity: sha512-3+ZICLNesJ7Zk4nkcblbkZTz814hoBqLtHq9Z17HcPyBs1/NUtaxLYy7pxD03Ris62NM2BEmTZKMJwcTe7vP1A==}
 
   tailwindcss@3.4.3:
     resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}
@@ -4232,7 +4232,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  sweetalert2-uncensored@11.10.8-uncensored: {}
+  sweetalert2-uncensored@11.10.8-1-uncensored: {}
 
   tailwindcss@3.4.3:
     dependencies:

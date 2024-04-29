@@ -9,7 +9,7 @@ export const ModalBase = ({ children, handleClick }: ModalInterface) => {
       id='modal'
       className='fixed z-30 bg-opacity-80 bg-black w-full h-full flex justify-center items-center'
     >
-      <div className='relative w-80 sm:w-96 h-96 p-1 mx-6 border border-slate-200 rounded-md bg-slate-50 flex flex-col justify-center'>
+      <div className='relative w-80 sm:min-w-96 sm:w-2/5 h-96 p-1 sm:px-5 mx-6 border border-slate-200 rounded-md bg-slate-50 flex flex-col justify-center'>
         {children}
         <button
           id='close'

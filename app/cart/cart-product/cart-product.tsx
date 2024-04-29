@@ -60,17 +60,22 @@ export const CartProduct: React.FC<CartInterface> = ({ id, quantity }) => {
 
   if (!product) {
     return (
-      <div className='grid grid-cols-5 items-center animate-pulse'>
-        <div className='h-24 w-24 bg-gray-200 rounded my-1 mx-auto'></div>
-        <div className='h-6 bg-gray-200 rounded mx-auto w-3/4'></div>
-        <div className='h-6 bg-gray-200 rounded mx-auto w-1/4'></div>
-        <div className='h-6 bg-gray-200 rounded mx-auto w-1/4'></div>
-        <div className='h-6 bg-gray-200 rounded mx-auto w-1/4'></div>
+      <div className='grid grid-cols-4 items-center animate-pulse'>
+        <div className='my-1 mx-auto h-24 w-24 bg-gray-200 rounded' />
+        <div className='h-6 bg-gray-200 rounded w-2/3 mb-2'></div>
+        <div className='flex flex-col justify-center items-center gap-1'>
+          <span className='h-4 bg-gray-200 rounded w-2/3 mb-2'></span>
+          <div className='flex gap-2'>
+            <div className='h-10 w-10 bg-gray-200 rounded'></div>
+            <div className='h-10 w-10 bg-gray-200 rounded'></div>
+          </div>
+        </div>
+        <span className='h-4 bg-gray-200 rounded w-2/3'></span>
       </div>
     )
   } else {
     return (
-      <div className='grid grid-cols-5 items-center'>
+      <div className='grid grid-cols-4 items-center'>
         <Image
           src={product.image}
           height='96'
@@ -79,9 +84,10 @@ export const CartProduct: React.FC<CartInterface> = ({ id, quantity }) => {
           className='my-1 mx-auto'
         />
         <h2>{product.name}</h2>
-        <span>$ {product.price}</span>
         <div className='flex flex-col justify-center items-center gap-1'>
-          <span className='w-7'>{quantity}u</span>
+          <span>
+            $ {product.price} x {quantity}u
+          </span>
           <div className='flex gap-2'>
             <SignButton sign='-' handleClick={handleMinus} />
             <SignButton sign='+' handleClick={handlePlus} />

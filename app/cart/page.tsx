@@ -81,14 +81,13 @@ export default function Cart() {
   } else {
     return (
       <section
-        className='grid py-3 md:pt-10 pb-20 px-1 sm:px-5 lg:px-14 xl:px-24 text-xs sm:text-base'
+        className='grid py-3 md:pt-10 pb-20 px-1 sm:px-5 lg:px-14 xl:px-24 text-sm sm:text-base'
         style={{ minHeight: '88vh' }}
       >
-        <div className='grid grid-cols-5 items-center font-extralight sm:font-light'>
+        <div className='grid grid-cols-4 items-center font-extralight sm:font-light'>
           <span></span>
           <span>NAME</span>
-          <span>PRICE</span>
-          <span>QUANTITY</span>
+          <span>PRICE & QUANTITY</span>
           <span>TOTAL</span>
         </div>
         {cartProducts.map((product) => {
@@ -104,8 +103,8 @@ export default function Cart() {
             />
           )
         })}
-        <div className='grid grid-cols-5 items-center font-light border-t mt-4 py-4'>
-          <span className='col-span-4'>TOTAL</span>
+        <div className='grid grid-cols-4 items-center font-light border-t mt-4 py-4'>
+          <span className='col-span-3'>TOTAL</span>
           <span>
             {total ? (
               `$ ${total}`
@@ -120,14 +119,33 @@ export default function Cart() {
           <Button
             type='button'
             text='Clear cart'
-            className='w-28'
+            className='w-28 h-16'
             handleClick={handleClear}
             disabled={false}
           />
           <Button
             type='button'
-            text='Buy'
-            className='w-28 bg-slate'
+            text={
+              <div className='w-4/6 flex justify-evenly'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='1.5em'
+                  height='1.5em'
+                  viewBox='0 0 24 24'
+                >
+                  <g fill='black'>
+                    <path d='M14 10h-4v4h4z'></path>
+                    <path
+                      fillRule='evenodd'
+                      d='M5 9a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4zm4-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1'
+                      clipRule='evenodd'
+                    ></path>
+                  </g>
+                </svg>
+                <span>Buy</span>
+              </div>
+            }
+            className='w-28 h-16'
             handleClick={handleBuy}
             disabled={false}
           />

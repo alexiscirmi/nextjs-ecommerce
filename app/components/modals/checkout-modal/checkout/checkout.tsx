@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import SquareLogo from '@/public/square-logo.png'
-import { CreditCard, PaymentForm } from 'react-square-web-payments-sdk'
+import { CreditCard, PaymentForm } from 'react-square-web-payments-sdk-fixed'
 import { useAppSelector } from '@/lib/redux/hooks'
 import { submitPayment } from '@/app/actions/actions'
 

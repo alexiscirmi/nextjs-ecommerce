@@ -32,7 +32,7 @@ importers:
       react-redux:
         specifier: ^9.1.1
         version: 9.1.1(@types/react@18.2.74)(react@18.2.0)(redux@5.0.1)
-      react-square-web-payments-sdk:
+      react-square-web-payments-sdk-fixed:
         specifier: ^3.2.1
         version: 3.2.1(react@18.2.0)
       react-toastify:
@@ -1844,8 +1844,8 @@ packages:
       redux:
         optional: true
 
-  react-square-web-payments-sdk@3.2.1:
-    resolution: {integrity: sha512-XhW4snpCfUNaVqS652dDWSWJd+r9OftkqmvP9hix5ISEV8Foo9QrGDe33t1w+uMIl9ox1EWlexGb0yDe8ZYamQ==}
+  react-square-web-payments-sdk-fixed@3.2.1:
+    resolution: {integrity: sha512-HzSTSBOUMbgbZ8KpPAnrzw0svYJLWKwGODVZYR7I1/cM1tRyLFdILdO9lvl8+xZwUKjAVxu8jOaDFCtMlL2oUw==}
     peerDependencies:
       react: ^16 || ^17 || ^18
 
@@ -2216,6 +2216,11 @@ packages:
   yargs@17.7.2:
     resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==}
     engines: {node: '>=12'}
+
+  yarn@1.22.22:
+    resolution: {integrity: sha512-prL3kGtyG7o9Z9Sv8IPfBNrWTDmXB4Qbes8A9rEzt6wkJV8mUvoirjU0Mp3GGAU06Y0XQyA3/2/RQFVuK7MTfg==}
+    engines: {node: '>=4.0.0'}
+    hasBin: true
 
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
@@ -4260,11 +4265,12 @@ snapshots:
       '@types/react': 18.2.74
       redux: 5.0.1
 
-  react-square-web-payments-sdk@3.2.1(react@18.2.0):
+  react-square-web-payments-sdk-fixed@3.2.1(react@18.2.0):
     dependencies:
       '@square/web-sdk': 2.0.1
       '@stitches/react': 1.2.8(react@18.2.0)
       react: 18.2.0
+      yarn: 1.22.22
 
   react-toastify@10.0.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
@@ -4735,5 +4741,7 @@ snapshots:
       string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 21.1.1
+
+  yarn@1.22.22: {}
 
   yocto-queue@0.1.0: {}

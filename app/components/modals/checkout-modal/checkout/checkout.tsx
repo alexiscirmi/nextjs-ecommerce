@@ -38,7 +38,7 @@ export default function Checkout() {
         target='_blank'
         className='mt-4 text-center text-slate-600'
       >
-        (Click here for testing credit card numbers)
+        (Click here for test credit card numbers)
       </a>
     </>
   )

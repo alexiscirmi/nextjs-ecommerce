@@ -22,8 +22,8 @@ export const CartIcon = () => {
     }
   }, [dispatch])
 
-  const products = useAppSelector((state) => state.cart.cartProducts)
-  const amount = products.reduce(
+  const { cartProducts } = useAppSelector((state) => state.cart)
+  const amount = cartProducts.reduce(
     (accumulator, currentValue) => accumulator + currentValue.quantity,
     0
   )

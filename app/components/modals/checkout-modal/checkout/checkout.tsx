@@ -2,15 +2,9 @@
 
 import Image from 'next/image'
 import SquareLogo from '@/public/square-logo.png'
-import { CreditCard, PaymentForm } from 'react-square-web-payments-sdk-fixed'
-import { useAppSelector } from '@/lib/redux/hooks'
-import { submitPayment } from '@/app/actions/actions'
+import { SquareForm } from './square-form/square-form'
 
 export default function Checkout() {
-  const cartProducts = useAppSelector((state) => state.cart.cartProducts)
-  const appId = process.env.NEXT_PUBLIC_SQUARE_APP_ID || ''
-  const locationId = process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID || ''
-
   return (
     <>
       <div className='mb-2 flex justify-center'>
@@ -22,16 +16,7 @@ export default function Checkout() {
         />
       </div>
       <div className='min-h-48 flex justify-center'>
-        <PaymentForm
-          applicationId={appId}
-          locationId={locationId}
-          cardTokenizeResponseReceived={async (token: any) => {
-            const result = await submitPayment(token.token, cartProducts)
-            console.log(result)
-          }}
-        >
-          <CreditCard />
-        </PaymentForm>
+        <SquareForm />
       </div>
       <a
         href='https://developer.squareup.com/docs/devtools/sandbox/payments#web-and-mobile-client-testing'

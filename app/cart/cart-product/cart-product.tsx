@@ -7,12 +7,14 @@ import { removeProduct } from '@/lib/redux/features/cartSlice'
 import { addProduct } from '@/lib/redux/features/cartSlice'
 import Image from 'next/image'
 import { SignButton } from './sign-button/sign-button'
+import Link from 'next/link'
 
 interface CartInterface {
+  id: string
   quantity: number
+  category: undefined | string
   image: string
   name: undefined | string
-  id: string
   price: undefined | number
   stock: undefined | number
 }
@@ -76,13 +78,15 @@ export const CartProduct: React.FC<CartInterface> = ({ id, quantity }) => {
   } else {
     return (
       <div className='grid grid-cols-4 items-center'>
-        <Image
-          src={product.image}
-          height='96'
-          width='96'
-          alt={`${product.name} image`}
-          className='my-1 mx-auto'
-        />
+        <Link href={`/products/${product.category}/${id}`}>
+          <Image
+            src={product.image}
+            height='96'
+            width='96'
+            alt={`${product.name} image`}
+            className='my-1 mx-auto'
+          />
+        </Link>
         <h2>{product.name}</h2>
         <div className='flex flex-col justify-center items-center gap-1'>
           <span>

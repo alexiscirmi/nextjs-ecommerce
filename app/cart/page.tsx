@@ -94,10 +94,11 @@ export default function Cart() {
           return (
             <CartProduct
               key={product.id}
+              id={product.id}
+              category={undefined}
               quantity={product.quantity}
               image={''}
               name={undefined}
-              id={product.id}
               price={undefined}
               stock={undefined}
             />

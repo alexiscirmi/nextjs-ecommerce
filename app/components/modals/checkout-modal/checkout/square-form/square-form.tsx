@@ -52,7 +52,7 @@ export const SquareForm = () => {
                 uid: userState.uid,
                 date: Date().slice(4, 33),
                 email: userState.email,
-                orderId: result.payment.orderId,
+                paymentId: result.payment.orderId,
                 order: cartProducts,
                 total: result.payment.approvedMoney?.amount
               })
@@ -61,15 +61,15 @@ export const SquareForm = () => {
 
               Swal.fire({
                 icon: 'success',
-                title: 'Payment successfull',
+                title: 'Payment successful',
                 html: `
                       <ul>
-                        <li>Order ID: ${result.payment.orderId}</li>
+                        <li>Order ID: ${docRef.id}</li>
+                        <li>Payment ID: ${result.payment.orderId}</li>
                         <li>Amount: $ ${result.payment.approvedMoney?.amount}</li>
                       </ul>
                     `,
-                showConfirmButton: false,
-                timer: 3000
+                showConfirmButton: true
               })
 
               dispatch(closeCheckoutModal())

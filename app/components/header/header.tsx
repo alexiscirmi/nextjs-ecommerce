@@ -33,9 +33,6 @@ export const Header = () => {
             <span className='mb-1'>DESIRES</span>
           </p>
         </Link>
-        <p className={`fixed bottom-5 ${urbanist100.className}`}>
-          (SITE UNDER CONSTRUCTION)
-        </p>
         <CartIcon />
       </nav>
     </header>

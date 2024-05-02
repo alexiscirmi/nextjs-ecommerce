@@ -64,9 +64,9 @@ export const SquareForm = () => {
                 title: 'Payment successful',
                 html: `
                       <ul>
-                        <li>Order ID: ${docRef.id}</li>
-                        <li>Payment ID: ${result.payment.orderId}</li>
-                        <li>Amount: $ ${result.payment.approvedMoney?.amount}</li>
+                        <li>Order ID: ${docRef.id}.</li>
+                        <li>Payment ID: ${result.payment.orderId}.</li>
+                        <li>Amount: $ ${result.payment.approvedMoney?.amount}.</li>
                       </ul>
                     `,
                 showConfirmButton: true
@@ -77,6 +77,13 @@ export const SquareForm = () => {
             } catch (e) {
               console.error('Error adding document: ', e)
             }
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Payment could not be processed',
+              text: 'Please, check your card numbers and try again.',
+              showConfirmButton: true
+            })
           }
         }}
       >

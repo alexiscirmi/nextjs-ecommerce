@@ -37,7 +37,7 @@ export const SquareForm = () => {
     })
   }
 
-  if (userState) {
+  if (userState && cartProducts.length > 0) {
     return (
       <PaymentForm
         applicationId={appId}

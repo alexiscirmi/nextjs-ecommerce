@@ -16,7 +16,7 @@ import { openCheckoutModal } from '@/lib/redux/features/checkoutModalSlice'
 import { openSignInModal } from '@/lib/redux/features/signInModalSlice'
 
 export default function Cart() {
-  const cartProducts = useAppSelector((state) => state.cart.cartProducts)
+  const { cartProducts } = useAppSelector((state) => state.cart)
   const [loading, setLoading] = useState(true)
   const [total, setTotal] = useState<undefined | number>(undefined)
   const router = useRouter()
@@ -44,6 +44,12 @@ export default function Cart() {
 
     calculateTotal()
   }, [cartProducts])
+
+  useEffect(() => {
+    if (cartProducts.length === 0) {
+      router.push('/')
+    }
+  }, [cartProducts.length, router])
 
   const dispatch = useAppDispatch()
 
@@ -76,8 +82,6 @@ export default function Cart() {
         <Spinner loadingScreen={true} />
       </SectionContainer>
     )
-  } else if (cartProducts.length === 0) {
-    router.push('/')
   } else {
     return (
       <section
